@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosClient = axios.create({
-  baseURL: '/api',
+  baseURL: 'https://api.ezfrontend.com/',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -9,8 +9,8 @@ const axiosClient = axios.create({
 
 export default axiosClient
 
-// Add a request interceptor
-axiosClient.interceptors.request.use(
+/// Add a request interceptor
+axios.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     return config
@@ -22,7 +22,7 @@ axiosClient.interceptors.request.use(
 )
 
 // Add a response interceptor
-axiosClient.interceptors.response.use(
+axios.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data

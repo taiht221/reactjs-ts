@@ -1,20 +1,84 @@
-import { Box, Container, Stack, Link as MuiLink } from '@mui/material'
-import * as React from 'react'
-import clsx from 'clsx'
-import { Navigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import Home from '@/components/home'
+import MenuIcon from '@mui/icons-material/Menu'
+import SearchIcon from '@mui/icons-material/Search'
+import { Box, Button, Container, Stack } from '@mui/material'
+import AppBar from '@mui/material/AppBar'
+import IconButton from '@mui/material/IconButton'
+import InputBase from '@mui/material/InputBase'
+import { alpha, styled } from '@mui/material/styles'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import CastleIcon from '@mui/icons-material/Castle'
+import { useNavigate } from 'react-router-dom'
+
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
+  },
+}))
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}))
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '30ch',
+      '&:focus': {
+        width: '38ch',
+      },
+    },
+  },
+}))
 
 export function HeaderDeskTop() {
+  const navigate = useNavigate()
   return (
-    <Box py={3}>
-      <Container>
-        <Stack direction="row" alignItems="center">
-          <MuiLink component={Link} to="/me">
-            fdafas
-          </MuiLink>
-        </Stack>
-      </Container>
+    <Box sx={{ flexGrow: 1, backgroundColor: 'primary.main' }}>
+      <AppBar position="static" sx={{ padding: '0.5rem 0' }}>
+        <Container>
+          <Toolbar sx={{ justifyContent: 'space-between' }}>
+            <IconButton size="large" edge="start" color="inherit" aria-label="open drawer">
+              <CastleIcon onClick={() => navigate('/me')} />
+            </IconButton>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase placeholder="Tìm sản phẩm" inputProps={{ 'aria-label': 'search' }} />
+            </Search>
+            <Stack direction="row">
+              <Button size="large" color="inherit">
+                Đăng nhập
+              </Button>
+              <Button size="large" color="inherit">
+                Đăng ký
+              </Button>
+            </Stack>
+          </Toolbar>
+        </Container>
+      </AppBar>
     </Box>
   )
 }
