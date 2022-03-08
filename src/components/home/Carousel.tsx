@@ -18,7 +18,7 @@ export function Carousel() {
   const navigate = useNavigate()
 
   return (
-    <Box component="section" pt={{ md: 8, xs: 4 }} pb={{ md: 9, xs: 7 }}>
+    <Box component="section" pt={{ md: 7, xs: 4 }} pb={{ md: 9, xs: 7 }}>
       <Container>
         <Swiper
           pagination={{ clickable: true }}
