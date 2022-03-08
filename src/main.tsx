@@ -14,19 +14,7 @@ ReactDOM.render(
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
       <BrowserRouter>
-        <Header />
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Route path="/thanh-toan" element={Checkout} />
-          <Route path="/search" element={ProductFeature} />
-          <Route path="/thong-tin" element={UserDetails} />
-          <Route path="/cart" element={CartPage} />
-          <Route path="/:slug?" element={ProductDetail} />
-
-          <Route element={Page404} /> */}
-        </Routes>
-        <Footer />
+        <App />
       </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>,

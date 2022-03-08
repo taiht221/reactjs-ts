@@ -1,7 +1,6 @@
 import HomeIcon from '@mui/icons-material/Home'
 import MenuBookIcon from '@mui/icons-material/MenuBook'
 import MenuIcon from '@mui/icons-material/Menu'
-import WorkIcon from '@mui/icons-material/Work'
 import {
   Box,
   Container,
