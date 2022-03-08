@@ -1,10 +1,10 @@
-import axiosClient from './axiosClient';
+// import axiosClient from './axiosClient';
 
-const homeProductApi = {
-  getAll(params) {
-    const url = '/home/product';
-    return axiosClient.get(url, { params });
-  },
-};
+// const homeProductApi = {
+//   getAll(params) {
+//     const url = '/home/product';
+//     return axiosClient.get(url, { params });
+//   },
+// };
 
-export default homeProductApi;
+// export default homeProductApi;
