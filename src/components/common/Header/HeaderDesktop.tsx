@@ -19,7 +19,7 @@ import './index.css'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
-  backgroundColor: alpha(theme.palette.primary.main, 0.15),
+  backgroundColor: alpha(theme.palette.secondary.light, 0.15),
   '&:hover': {
     border: '1px solid #4a6687',
   },
@@ -88,7 +88,7 @@ export function HeaderDeskTop() {
                 borderRadius: 'unset',
                 '&:hover': { backgroundColor: 'unset' },
               }}
-              display={{ xs: 'none',md:"block"}}
+              display={{ xs: 'none', md: 'block' }}
             >
               <Link to="/">
                 <img src="https://bazar-react.vercel.app/assets/images/logo2.svg" alt="" />
@@ -102,7 +102,7 @@ export function HeaderDeskTop() {
               </SearchIconWrapper>
               <StyledInputBase placeholder="Tìm sản phẩm" inputProps={{ 'aria-label': 'search' }} />
             </Search>
-            <Stack direction="row" spacing={2} display={{ xs: 'none',md:"flex"}}>
+            <Stack direction="row" spacing={2} display={{ xs: 'none', md: 'flex' }}>
               <Button
                 size="medium"
                 color="inherit"

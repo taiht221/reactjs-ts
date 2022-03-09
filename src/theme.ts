@@ -5,10 +5,10 @@ import { red } from '@mui/material/colors'
 let theme = createTheme({
   palette: {
     primary: {
-      main: '#1a94ff',
+      main: '#d23f57',
     },
     secondary: {
-      main: '#19857b',
+      main: '#0f3460',
     },
     error: {
       main: red.A400,
@@ -17,8 +17,8 @@ let theme = createTheme({
   typography: {
     fontFamily: 'Poppins, sans-serif',
   },
-  components:{
-    MuiLink:{
+  components: {
+    MuiLink: {
       defaultProps: {
         underline: 'none',
       },
@@ -30,8 +30,8 @@ let theme = createTheme({
           },
         },
       },
-    }
-  }
+    },
+  },
 })
 theme = responsiveFontSizes(theme)
 export default theme

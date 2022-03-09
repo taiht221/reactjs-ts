@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosClient = axios.create({
-  baseURL: 'https://api.ezfrontend.com/',
+  baseURL: 'https://cfd-reactjs.herokuapp.com',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -10,7 +10,7 @@ const axiosClient = axios.create({
 export default axiosClient
 
 /// Add a request interceptor
-axios.interceptors.request.use(
+axiosClient.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     return config
@@ -22,7 +22,7 @@ axios.interceptors.request.use(
 )
 
 // Add a response interceptor
-axios.interceptors.response.use(
+axiosClient.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
