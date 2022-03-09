@@ -17,3 +17,11 @@
     transform: translateY(0px);
   }
 }
+
+.header-link{
+  text-decoration: none;
+  color: #0f3460;
+}
+.header-link.active{
+  color: rgb(210, 63, 87)
+}

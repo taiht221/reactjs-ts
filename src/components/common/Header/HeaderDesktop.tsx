@@ -88,6 +88,7 @@ export function HeaderDeskTop() {
                 borderRadius: 'unset',
                 '&:hover': { backgroundColor: 'unset' },
               }}
+              display={{ xs: 'none',md:"block"}}
             >
               <Link to="/">
                 <img src="https://bazar-react.vercel.app/assets/images/logo2.svg" alt="" />
@@ -101,7 +102,7 @@ export function HeaderDeskTop() {
               </SearchIconWrapper>
               <StyledInputBase placeholder="Tìm sản phẩm" inputProps={{ 'aria-label': 'search' }} />
             </Search>
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={2} display={{ xs: 'none',md:"flex"}}>
               <Button
                 size="medium"
                 color="inherit"

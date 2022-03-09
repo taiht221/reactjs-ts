@@ -17,7 +17,21 @@ let theme = createTheme({
   typography: {
     fontFamily: 'Poppins, sans-serif',
   },
+  components:{
+    MuiLink:{
+      defaultProps: {
+        underline: 'none',
+      },
+      styleOverrides: {
+        root: {
+          '&:hover, &.active': {
+            color: '#FF6464',
+            opacity: 0.7,
+          },
+        },
+      },
+    }
+  }
 })
-
-export default theme
 theme = responsiveFontSizes(theme)
+export default theme

@@ -27,9 +27,9 @@ export function Carousel() {
           draggable
         >
           <SwiperSlide>
-            <Stack flexGrow={1} direction="row">
-              <Box maxWidth="50%">
-                <Typography component="h1" variant="h3" fontWeight="bold" mb={{ md: 5, xs: 3 }}>
+            <Stack flexGrow={1} direction="row" flexDirection={{xs:"column",md:"row"}}>
+              <Box maxWidth={{lg:"50%",xs:"100%"}}>
+                <Typography component="h1" variant="h3" fontWeight="bold" mb={{ md: 5, xs: 3 }} textAlign={{xs:"center",md:"left"}}>
                   50% Off For Your <br /> First Shopping,
                 </Typography>
                 <Typography mb={{ md: 5, xs: 3 }}>
@@ -38,11 +38,12 @@ export function Carousel() {
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{ color: 'white' }}
+                  sx={{ color: 'white',display:"block"}}
                   size="large"
                   onClick={() => {
                     navigate('/category')
                   }}
+                  
                 >
                   Shop Now
                 </Button>
@@ -59,13 +60,12 @@ export function Carousel() {
                   className="imageCarousel"
                 />
               </Box>
-              <Box></Box>
             </Stack>
           </SwiperSlide>
           <SwiperSlide>
-            <Stack flexGrow={1} direction="row">
-              <Box maxWidth="50%">
-                <Typography component="h1" variant="h3" fontWeight="bold" mb={{ md: 5, xs: 3 }}>
+          <Stack flexGrow={1} direction="row" flexDirection={{xs:"column",md:"row"}}>
+              <Box maxWidth={{lg:"50%",xs:"100%"}}>
+                <Typography component="h1" variant="h3" fontWeight="bold" mb={{ md: 5, xs: 3 }} textAlign={{xs:"center",md:"left"}}>
                   50% Off For Your <br /> First Shopping,
                 </Typography>
                 <Typography mb={{ md: 5, xs: 3 }}>
@@ -74,11 +74,12 @@ export function Carousel() {
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{ color: 'white' }}
+                  sx={{ color: 'white',display:"block"}}
                   size="large"
                   onClick={() => {
                     navigate('/category')
                   }}
+                  
                 >
                   Shop Now
                 </Button>
@@ -95,7 +96,6 @@ export function Carousel() {
                   className="imageCarousel"
                 />
               </Box>
-              <Box></Box>
             </Stack>
           </SwiperSlide>
         </Swiper>
