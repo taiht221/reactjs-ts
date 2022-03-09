@@ -8,11 +8,15 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/system'
 import * as React from 'react'
-
-export function BigDiscountCard() {
+type BigDiscountCardProps = {
+  discount_rate: string
+  name: string
+}
+export function BigDiscountCard(infor: BigDiscountCardProps) {
+  console.log(infor)
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <Chip label="20% off" color="error" sx={{ margin: '1rem' }} />
+      <Chip label={infor.discount_rate} color="error" sx={{ margin: '1rem' }} />
       <CardMedia
         component="img"
         height="200"
@@ -21,7 +25,7 @@ export function BigDiscountCard() {
       />
       <CardContent>
         <Typography variant="h6" color="text.secondary" component="h3" fontWeight="bold" mt={2}>
-          Nike Air Force 1
+          {infor.name}
         </Typography>
         <Stack direction="row">
           <StarIcon sx={{ color: '#faaf00' }}></StarIcon>

@@ -6,15 +6,16 @@ import { useEffect, useState } from 'react'
 import { Loading } from '../Loading'
 import homeProductApi from '../../api/homeProductApi'
 
-export interface HomeProps {
-  data: {}
+type HomeProps = {
+  hot?: any
+  discount?: any
 }
 
-export default function Home({ data }: HomeProps) {
-  const [homeProduct, sethomeProduct] = useState(null)
+export default function Home() {
+  const [homeProduct, sethomeProduct] = useState<HomeProps>({})
 
   const fetchProducts = async () => {
-    const productList: any = await homeProductApi.getAll()
+    const productList: HomeProps = await homeProductApi.getAll()
     sethomeProduct(productList)
   }
   useEffect(() => {
@@ -25,6 +26,8 @@ export default function Home({ data }: HomeProps) {
     }
   }, [])
 
+  console.log(homeProduct.hot)
+
   if (!homeProduct) {
     return <Loading />
   }
@@ -32,8 +35,8 @@ export default function Home({ data }: HomeProps) {
   return (
     <Box sx={{ minHeight: 1000 }}>
       <Carousel />
-      <TopCategories data={homeProduct} />
-      <BigDiscount />
+      <TopCategories data={homeProduct.hot} />
+      <BigDiscount data={homeProduct.discount} />
     </Box>
   )
 }

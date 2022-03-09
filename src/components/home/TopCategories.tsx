@@ -12,11 +12,11 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { BigDiscountCard } from './BigDiscountCard'
 import './index.css'
 export interface TopCategoriesProps {
-  data: object | string
+  data?: Array<any>
 }
 
-export function TopCategories(props: TopCategoriesProps) {
-  console.log(props)
+export function TopCategories({ data }: TopCategoriesProps) {
+  console.log(data)
   return (
     <Box component="section" bgcolor="#f6f9fc" pb={4} pt={2}>
       <Container>
@@ -47,21 +47,14 @@ export function TopCategories(props: TopCategoriesProps) {
           navigation
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log('slide change')}
+          // onSwiper={(swiper) => console.log(swiper)}
+          // onSlideChange={() => console.log('slide change')}
         >
-          <SwiperSlide>
-            <BigDiscountCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BigDiscountCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BigDiscountCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BigDiscountCard />
-          </SwiperSlide>
+          {data?.map((card: any) => {
+            ;<SwiperSlide>
+              <BigDiscountCard infor={(card.name, card.discount_rate)} />
+            </SwiperSlide>
+          })}
         </Swiper>
       </Container>
     </Box>

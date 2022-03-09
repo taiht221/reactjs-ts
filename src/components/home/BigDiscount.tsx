@@ -12,7 +12,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { BigDiscountCard } from './BigDiscountCard'
 import './index.css'
 
-export interface BigDiscountProps {}
+export interface BigDiscountProps {
+  data: any
+}
 
 export function BigDiscount(props: BigDiscountProps) {
   return (
@@ -45,10 +47,10 @@ export function BigDiscount(props: BigDiscountProps) {
           navigation
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log('slide change')}
+          // onSwiper={(swiper) => console.log(swiper)}
+          // onSlideChange={() => console.log('slide change')}
         >
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <BigDiscountCard />
           </SwiperSlide>
           <SwiperSlide>
@@ -59,7 +61,7 @@ export function BigDiscount(props: BigDiscountProps) {
           </SwiperSlide>
           <SwiperSlide>
             <BigDiscountCard />
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
       </Container>
     </Box>
