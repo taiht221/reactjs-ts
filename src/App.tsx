@@ -12,13 +12,6 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/thanh-toan" element={Checkout} />
-  <Route path="/search" element={ProductFeature} />
-  <Route path="/thong-tin" element={UserDetails} />
-  <Route path="/cart" element={CartPage} />
-  <Route path="/:slug?" element={ProductDetail} />
-
-  <Route element={Page404} /> */}
       </Routes>
       <Footer />
     </Box>
