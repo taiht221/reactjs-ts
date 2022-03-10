@@ -48,6 +48,7 @@ export function BigDiscount({ data }: BigDiscountProps) {
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           lazy={true}
+          freeMode
           // onSwiper={(swiper) => console.log(swiper)}
           // onSlideChange={() => console.log('slide change')}
           breakpoints={{

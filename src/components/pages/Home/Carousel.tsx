@@ -1,18 +1,15 @@
-import React, { useRef, useState } from 'react'
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react'
-
+import { Button, Container, Stack, Typography } from '@mui/material'
+import { Box } from '@mui/system'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+// import required modules
+import { Pagination } from 'swiper'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/pagination'
-
-// import required modules
-import { Pagination } from 'swiper'
-import { Button, Container, Stack, Typography } from '@mui/material'
-import { Box } from '@mui/system'
-import { Image } from '@mui/icons-material'
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react'
 import './index.css'
-import { useNavigate } from 'react-router-dom'
 
 export function Carousel() {
   const navigate = useNavigate()

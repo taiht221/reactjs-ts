@@ -8,7 +8,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 export interface FooterProps {}
 
-export function Footer(props: FooterProps) {
+export default function Footer(props: FooterProps) {
   return (
     <Box component="footer" bgcolor="secondary.main" pb={4} pt={3}>
       <Container>

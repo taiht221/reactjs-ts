@@ -8,7 +8,6 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/system'
 import { Link } from 'react-router-dom'
-import { truncateText } from '../../utils/common'
 import './index.css'
 type BigDiscountCardProps = {
   discount_rate: string
@@ -27,7 +26,7 @@ export function BigDiscountCard({
   slug,
 }: BigDiscountCardProps) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       <Chip label={`${discount_rate} %OFF`} color="error" sx={{ margin: '1rem' }} />
       <Link to={`/${slug}`}>
         <CardMedia

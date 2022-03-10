@@ -1,11 +1,11 @@
 import { Box } from '@mui/material'
-import { Carousel } from './Carousel'
-import { BigDiscount } from './BigDiscount'
-import { TopCategories } from './TopCategories'
 import { useEffect, useState } from 'react'
-import { Loading } from '../Loading'
-import homeProductApi from '../../api/homeProductApi'
+import homeProductApi from '../../../api/homeProductApi'
+import Loading from '../../common/Loading'
 import { Benefit } from './Benefit'
+import { BigDiscount } from './BigDiscount'
+import { Carousel } from './Carousel'
+import { TopCategories } from './TopCategories'
 
 type HomeProps = {
   hot: any[]

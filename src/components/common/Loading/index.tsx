@@ -2,7 +2,7 @@ import * as React from 'react'
 import './style.css'
 export interface LoadingProps {}
 
-export function Loading(props: LoadingProps) {
+export default function Loading(props: LoadingProps) {
   return (
     <div className="loader-container ">
       <div className="loader">

@@ -5,7 +5,7 @@ import { HeaderMobile } from './HeaderMobile'
 
 export interface HeaderProps {}
 
-export function Header(props: HeaderProps) {
+export default function Header(props: HeaderProps) {
   return (
     <>
       <HeaderMobile />

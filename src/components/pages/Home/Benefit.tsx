@@ -9,7 +9,7 @@ export function Benefit() {
     <Box component="section" bgcolor="#f6f9fc" pb={6} pt={3}>
       <Container>
         <Stack direction={{ md: 'row', xs: 'column' }} spacing={2}>
-          <Paper elevation={2}>
+          <Paper elevation={2} sx={{ '&:hover': { boxShadow: '0px 8px 45px rgb(3 0 71 / 9%)' } }}>
             <Stack sx={{ justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
               <Button
                 color="inherit"
@@ -33,7 +33,7 @@ export function Benefit() {
               </Typography>
             </Stack>
           </Paper>
-          <Paper elevation={2}>
+          <Paper elevation={2} sx={{ '&:hover': { boxShadow: '0px 8px 45px rgb(3 0 71 / 9%)' } }}>
             <Stack sx={{ justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
               <Button
                 color="inherit"
@@ -53,7 +53,7 @@ export function Benefit() {
               </Typography>
             </Stack>
           </Paper>
-          <Paper elevation={2}>
+          <Paper elevation={2} sx={{ '&:hover': { boxShadow: '0px 8px 45px rgb(3 0 71 / 9%)' } }}>
             <Stack sx={{ justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
               <Button
                 color="inherit"
@@ -73,7 +73,7 @@ export function Benefit() {
               </Typography>
             </Stack>
           </Paper>
-          <Paper elevation={2}>
+          <Paper elevation={2} sx={{ '&:hover': { boxShadow: '0px 8px 45px rgb(3 0 71 / 9%)' } }}>
             <Stack sx={{ justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
               <Button
                 color="inherit"
