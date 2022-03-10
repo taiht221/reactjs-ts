@@ -1,4 +1,4 @@
-import { ListReponse } from '@/models/common'
+import { ListReponse } from '../../models/common'
 import detailsApi from '../../api/detailsApi'
 import { useEffect, useState } from 'react'
 import { useLocation, useRoutes, useParams } from 'react-router-dom'
