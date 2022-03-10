@@ -25,11 +25,18 @@ export function Carousel() {
           modules={[Pagination]}
           className="mySwiper"
           draggable
+          slidesPerView={1}
         >
           <SwiperSlide>
-            <Stack flexGrow={1} direction="row" flexDirection={{xs:"column",md:"row"}}>
-              <Box maxWidth={{lg:"50%",xs:"100%"}}>
-                <Typography component="h1" variant="h3" fontWeight="bold" mb={{ md: 5, xs: 3 }} textAlign={{xs:"center",md:"left"}}>
+            <Stack flexGrow={1} direction="row" flexDirection={{ xs: 'column', md: 'row' }}>
+              <Box maxWidth={{ lg: '50%', xs: '100%' }}>
+                <Typography
+                  component="h1"
+                  variant="h3"
+                  fontWeight="bold"
+                  mb={{ md: 5, xs: 3 }}
+                  textAlign={{ xs: 'center', md: 'left' }}
+                >
                   50% Off For Your <br /> First Shopping,
                 </Typography>
                 <Typography mb={{ md: 5, xs: 3 }}>
@@ -38,12 +45,11 @@ export function Carousel() {
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{ color: 'white',display:"block"}}
+                  sx={{ color: 'white', display: 'block' }}
                   size="large"
                   onClick={() => {
                     navigate('/category')
                   }}
-                  
                 >
                   Shop Now
                 </Button>
@@ -63,9 +69,15 @@ export function Carousel() {
             </Stack>
           </SwiperSlide>
           <SwiperSlide>
-          <Stack flexGrow={1} direction="row" flexDirection={{xs:"column",md:"row"}}>
-              <Box maxWidth={{lg:"50%",xs:"100%"}}>
-                <Typography component="h1" variant="h3" fontWeight="bold" mb={{ md: 5, xs: 3 }} textAlign={{xs:"center",md:"left"}}>
+            <Stack flexGrow={1} direction="row" flexDirection={{ xs: 'column', md: 'row' }}>
+              <Box maxWidth={{ lg: '50%', xs: '100%' }}>
+                <Typography
+                  component="h1"
+                  variant="h3"
+                  fontWeight="bold"
+                  mb={{ md: 5, xs: 3 }}
+                  textAlign={{ xs: 'center', md: 'left' }}
+                >
                   50% Off For Your <br /> First Shopping,
                 </Typography>
                 <Typography mb={{ md: 5, xs: 3 }}>
@@ -74,12 +86,11 @@ export function Carousel() {
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{ color: 'white',display:"block"}}
+                  sx={{ color: 'white', display: 'block' }}
                   size="large"
                   onClick={() => {
                     navigate('/category')
                   }}
-                  
                 >
                   Shop Now
                 </Button>

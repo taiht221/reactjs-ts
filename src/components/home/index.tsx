@@ -5,19 +5,21 @@ import { TopCategories } from './TopCategories'
 import { useEffect, useState } from 'react'
 import { Loading } from '../Loading'
 import homeProductApi from '../../api/homeProductApi'
+import { Benefit } from './Benefit'
 
 type HomeProps = {
-  hot?: any
-  discount?: any
+  hot: any[]
+  discount: any[]
 }
 
 export default function Home() {
-  const [homeProduct, sethomeProduct] = useState<HomeProps>({})
+  const [homeProduct, sethomeProduct] = useState<HomeProps>()
 
   const fetchProducts = async () => {
     const productList: HomeProps = await homeProductApi.getAll()
     sethomeProduct(productList)
   }
+
   useEffect(() => {
     try {
       fetchProducts()
@@ -25,8 +27,6 @@ export default function Home() {
       console.log(error)
     }
   }, [])
-
-  console.log(homeProduct.hot)
 
   if (!homeProduct) {
     return <Loading />
@@ -37,6 +37,7 @@ export default function Home() {
       <Carousel />
       <TopCategories data={homeProduct.hot} />
       <BigDiscount data={homeProduct.discount} />
+      <Benefit />
     </Box>
   )
 }

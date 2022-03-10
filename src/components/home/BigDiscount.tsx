@@ -13,10 +13,10 @@ import { BigDiscountCard } from './BigDiscountCard'
 import './index.css'
 
 export interface BigDiscountProps {
-  data: any
+  data: Array<any>
 }
 
-export function BigDiscount(props: BigDiscountProps) {
+export function BigDiscount({ data }: BigDiscountProps) {
   return (
     <Box component="section" bgcolor="#f6f9fc" pb={4} pt={2}>
       <Container>
@@ -49,19 +49,43 @@ export function BigDiscount(props: BigDiscountProps) {
           scrollbar={{ draggable: true }}
           // onSwiper={(swiper) => console.log(swiper)}
           // onSlideChange={() => console.log('slide change')}
+          breakpoints={{
+            320: {
+              width: 300,
+              slidesPerView: 1,
+            },
+            414: {
+              width: 400,
+              slidesPerView: 1,
+            },
+            // when window width is >= 640px
+            640: {
+              width: 640,
+              slidesPerView: 1,
+            },
+            // when window width is >= 768px
+            768: {
+              width: 768,
+              slidesPerView: 3,
+            },
+            1170: {
+              width: 1170,
+              slidesPerView: 4,
+            },
+          }}
         >
-          {/* <SwiperSlide>
-            <BigDiscountCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BigDiscountCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BigDiscountCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <BigDiscountCard />
-          </SwiperSlide> */}
+          {data.map((card: any, index) => (
+            <SwiperSlide key={index}>
+              <BigDiscountCard
+                discount_rate={card.discount_rate}
+                name={card.name}
+                imageUrl={card.images[0].thumbnail_url}
+                price_usd={card.price_usd}
+                categories={card.categories}
+                slug={card.slug}
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </Container>
     </Box>

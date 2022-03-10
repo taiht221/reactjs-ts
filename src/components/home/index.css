@@ -27,3 +27,15 @@ a {
 .swiper-button-prev:after {
   font-size: 1rem !important;
 }
+
+.truncate {
+  overflow: hidden;
+  line-height: 2rem;
+  min-height: 4rem;
+  max-height: 8rem;
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+}

@@ -9,6 +9,7 @@ import { Caterogy } from './components/Category'
 import { Account } from './components/Account'
 import { Cart } from './components/Cart'
 import { NotFound } from './components/NotFound'
+import ProductDetail from './components/ProductDetail'
 export default function App() {
   return (
     <Box>
@@ -19,8 +20,10 @@ export default function App() {
         <Route path="/category" element={<Caterogy />} />
         <Route path="/profile" element={<Account />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/:slug" element={<ProductDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+
       <Footer />
     </Box>
   )

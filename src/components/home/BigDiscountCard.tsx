@@ -7,25 +7,47 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/system'
-import * as React from 'react'
+import { Link } from 'react-router-dom'
+import { truncateText } from '../../utils/common'
+import './index.css'
 type BigDiscountCardProps = {
   discount_rate: string
   name: string
+  categories: number
+  price_usd: number
+  imageUrl: string
+  slug: string
 }
-export function BigDiscountCard(infor: BigDiscountCardProps) {
-  console.log(infor)
+export function BigDiscountCard({
+  discount_rate,
+  name,
+  categories,
+  price_usd,
+  imageUrl,
+  slug,
+}: BigDiscountCardProps) {
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <Chip label={infor.discount_rate} color="error" sx={{ margin: '1rem' }} />
-      <CardMedia
-        component="img"
-        height="200"
-        image="https://bazar-react.vercel.app/assets/images/products/nike-black.png"
-        alt="Paella dish"
-      />
+      <Chip label={`${discount_rate} %OFF`} color="error" sx={{ margin: '1rem' }} />
+      <Link to={`/${slug}`}>
+        <CardMedia
+          component="img"
+          height="200"
+          image={imageUrl}
+          alt={name}
+          sx={{ objectFit: 'none' }}
+        />
+      </Link>
       <CardContent>
-        <Typography variant="h6" color="text.secondary" component="h3" fontWeight="bold" mt={2}>
-          {infor.name}
+        <Typography
+          variant="body2"
+          color="secondary.light"
+          component="h3"
+          fontWeight="bold"
+          mt={2}
+          className="truncate"
+        >
+          {name}
         </Typography>
         <Stack direction="row">
           <StarIcon sx={{ color: '#faaf00' }}></StarIcon>
@@ -36,7 +58,7 @@ export function BigDiscountCard(infor: BigDiscountCardProps) {
         </Stack>
         <Stack direction="row" justifyContent="space-between" mt={2} alignItems="center">
           <Box component="span" color="primary.main">
-            $$20
+            {price_usd} $
           </Box>
           <Button>
             <AddBoxOutlinedIcon color="primary"></AddBoxOutlinedIcon>
