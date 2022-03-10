@@ -1,5 +1,4 @@
 import { HomeProductReponse, ListReponse } from './../models/common'
-import category from '@/models/caterogy'
 import axiosClient from './axiosClient'
 
 const homeProductApi = {
