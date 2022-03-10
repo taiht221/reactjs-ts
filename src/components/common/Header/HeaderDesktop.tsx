@@ -1,64 +1,20 @@
-import MenuIcon from '@mui/icons-material/Menu'
+import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import SearchIcon from '@mui/icons-material/Search'
 import { Badge, Box, Button, Container, Stack } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import IconButton from '@mui/material/IconButton'
-import InputBase from '@mui/material/InputBase'
-import { alpha, styled } from '@mui/material/styles'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import CastleIcon from '@mui/icons-material/Castle'
-import { useNavigate } from 'react-router-dom'
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
-import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
-import ButtonUnstyled from '@mui/base/ButtonUnstyled'
-import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Search, SearchIconWrapper, StyledInputBase } from './common'
+import { HeaderDialog } from './HeaderDialog'
 import './index.css'
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  backgroundColor: alpha(theme.palette.secondary.light, 0.15),
-  '&:hover': {
-    border: '1px solid #4a6687',
-  },
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
-  },
-}))
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}))
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '40ch',
-      '&:focus': {
-        border: '2px solid #4a6687',
-      },
-    },
-  },
-}))
-
 export function HeaderDeskTop() {
+  const [open, setOpen] = useState(false)
+  const [isLoggedIn, setisLoggedIn] = useState(false)
   const navigate = useNavigate()
   const [scrollY, setScrollY] = useState(window.scrollY)
 
@@ -70,8 +26,17 @@ export function HeaderDeskTop() {
 
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} component="header">
       <AppBar
         position="static"
         sx={{
@@ -107,6 +72,7 @@ export function HeaderDeskTop() {
                 size="medium"
                 color="inherit"
                 sx={{ bgcolor: '#F3F5F9', borderRadius: '50%', minWidth: 'unset' }}
+                onClick={handleClickOpen}
               >
                 <PersonOutlineIcon />
               </Button>
@@ -123,6 +89,7 @@ export function HeaderDeskTop() {
           </Toolbar>
         </Container>
       </AppBar>
+      <HeaderDialog open={open} onClose={handleClose} />
     </Box>
   )
 }
