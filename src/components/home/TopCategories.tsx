@@ -43,6 +43,7 @@ export function TopCategories({ data }: TopCategoriesProps) {
         <Swiper
           // install Swiper modules
           modules={[Navigation]}
+          lazy={true}
           spaceBetween={10}
           slidesPerView={3}
           navigation

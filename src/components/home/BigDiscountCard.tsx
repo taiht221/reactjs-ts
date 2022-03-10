@@ -36,6 +36,7 @@ export function BigDiscountCard({
           image={imageUrl}
           alt={name}
           sx={{ objectFit: 'none' }}
+          className="swiper-lazy"
         />
       </Link>
       <CardContent>
