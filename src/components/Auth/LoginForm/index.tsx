@@ -9,38 +9,11 @@ import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import * as yup from 'yup'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    paddingTop: theme.spacing(1),
-  },
-  avatar: {
-    margin: '0 auto',
-    backgroundColor: theme.palette.secondary.main,
-  },
-  title: {
-    margin: theme.spacing(2, 0, 4, 0),
-    textAlign: 'center',
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2, 0),
-    backgroundColor: 'green',
-    color: 'white',
-  },
-  progress: {
-    position: 'absolute',
-    top: theme.spacing(0.5),
-    left: 0,
-    right: 0,
-  },
-}))
-
-LoginForm.propTypes = {
-  onSubmit: PropTypes.func,
+export interface LoginFormProps {
+  onSubmit: () => void
 }
 
-function LoginForm(props) {
-  const loadingUser = useSelector((state) => state.user.loading)
-  const classes = useStyles()
+function LoginForm({ onSubmit }: LoginFormProps) {
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -59,32 +32,23 @@ function LoginForm(props) {
     resolver: yupResolver(schema),
   })
   const handleSubmit = (values) => {
-    const { onSubmit } = props
     if (onSubmit) {
       onSubmit(values)
     }
     form.reset()
   }
   return (
-    <div className={classes.root}>
-      {loadingUser && <LinearProgress className={classes.progress} />}
-      <Avatar className={classes.avatar}>
+    <div>
+      <Avatar>
         <LockOutlined />
       </Avatar>
-      <Typography component="h3" variant="h5" className={classes.title}>
+      <Typography component="h3" variant="h5">
         Đăng nhập
       </Typography>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <InputField form={form} name="email" label="Email" />
         <PasswordField form={form} name="password" label="Mật Khẩu" />
-        <Button
-          type="submit"
-          variant="contained"
-          fullWidth
-          className={classes.submit}
-          size="large"
-          disabled={loadingUser}
-        >
+        <Button type="submit" variant="contained" fullWidth size="large" disabled>
           Đăng nhập
         </Button>
       </form>

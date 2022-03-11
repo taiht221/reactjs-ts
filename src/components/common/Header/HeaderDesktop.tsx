@@ -1,15 +1,20 @@
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import SearchIcon from '@mui/icons-material/Search'
-import { Badge, Box, Button, Container, Stack } from '@mui/material'
+import { Badge, Box, Button, Container, Stack, Typography } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
-import IconButton from '@mui/material/IconButton'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
 import Toolbar from '@mui/material/Toolbar'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Register from '../../Auth/Register'
+import TestForm from '../../Auth/TestForm'
 import { Search, SearchIconWrapper, StyledInputBase } from './common'
-import { HeaderDialog } from './HeaderDialog'
 import './index.css'
 
 export function HeaderDeskTop() {
@@ -33,6 +38,9 @@ export function HeaderDeskTop() {
 
   const handleClose = () => {
     setOpen(false)
+  }
+  const handleTestFormSubmit = (value: string) => {
+    console.log(value)
   }
 
   return (
@@ -58,8 +66,6 @@ export function HeaderDeskTop() {
               <Link to="/">
                 <img src="https://bazar-react.vercel.app/assets/images/logo2.svg" alt="" />
               </Link>
-
-              {/* <CastleIcon  /> */}
             </Box>
             <Search>
               <SearchIconWrapper>
@@ -89,7 +95,25 @@ export function HeaderDeskTop() {
           </Toolbar>
         </Container>
       </AppBar>
-      <HeaderDialog open={open} onClose={handleClose} />
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        disableEscapeKeyDown
+      >
+        <DialogTitle id="alert-dialog-title">Welcome To Ecommerce </DialogTitle>
+        <Typography>Log in with email & password</Typography>
+        <DialogContent>
+          <Register />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose} autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   )
 }
