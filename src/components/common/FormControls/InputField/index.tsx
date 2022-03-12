@@ -7,10 +7,12 @@ export interface InputFieldProps {
   disabled?: boolean
   name: string
   control: any
+  autocomplete: string
+  placeholder: string
 }
 
 export default function InputField(props: InputFieldProps) {
-  const { form, label, disabled, name, control } = props
+  const { form, label, disabled, name, control, autocomplete, placeholder } = props
   const { field, fieldState, formState } = useController(props)
   // console.log(field, fieldState, formState)
   return (
@@ -27,6 +29,7 @@ export default function InputField(props: InputFieldProps) {
             {label}
           </InputLabel>
           <TextField
+            autoComplete={autocomplete}
             variant="outlined"
             margin="dense"
             fullWidth
@@ -37,7 +40,7 @@ export default function InputField(props: InputFieldProps) {
             name={name}
             value={value}
             disabled={disabled}
-            placeholder="fsafdasdf"
+            placeholder={placeholder}
           />
         </>
       )}

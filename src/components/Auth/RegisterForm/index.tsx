@@ -16,14 +16,7 @@ export interface RegisterFormProps {
   onSubmit: (value: string) => void
 }
 export default function RegisterForm({ onSubmit }: RegisterFormProps) {
-  const schema = yup
-    .object({
-      fullName: yup.string().required('Please enter title'),
-      email: yup.string().required('Please enter title'),
-      // password: yup.string().required('Please enter title'),
-      // retypePassword: yup.string().required('Please enter title'),
-    })
-    .required()
+  const schema = yup.object({}).required()
 
   const form = useForm<RegisterFormInputs>({
     defaultValues: {
@@ -44,16 +37,45 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
   }
   return (
     <form onSubmit={form.handleSubmit(onSubmitForm)}>
-      <InputField name="fullName" label="Full Name" form={form} control={form.control} />
-      <InputField name="email" label="Email" form={form} control={form.control} />
-      <PasswordField name="password" label="Password" form={form} control={form.control} />
+      <InputField
+        name="fullName"
+        label="Full Name"
+        form={form}
+        control={form.control}
+        autocomplete="username"
+        placeholder="Tai Huynh"
+      />
+      <InputField
+        name="email"
+        label="Email"
+        form={form}
+        control={form.control}
+        autocomplete="email"
+        placeholder="example@mail.com"
+      />
+      <PasswordField
+        name="password"
+        label="Password"
+        form={form}
+        control={form.control}
+        autocomplete="new-password"
+        placeholder="******"
+      />
       <PasswordField
         name="retypePassword"
         label="Retype Password"
         form={form}
         control={form.control}
+        autocomplete="current-password"
+        placeholder="******"
       />
-      <Button variant="contained" color="primary" fullWidth sx={{ marginTop: '1rem' }}>
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        fullWidth
+        sx={{ marginTop: '1rem' }}
+      >
         Create Account
       </Button>
     </form>

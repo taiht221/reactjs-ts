@@ -18,10 +18,14 @@
   }
 }
 
-.header-link{
+.header-link {
   text-decoration: none;
   color: #0f3460;
 }
-.header-link.active{
-  color: rgb(210, 63, 87)
+.header-link.active {
+  color: rgb(210, 63, 87);
+}
+
+.MuiPaper-root {
+  min-width: 30%;
 }
