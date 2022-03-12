@@ -1,12 +1,15 @@
-import * as React from 'react'
 import { useForm } from 'react-hook-form'
 import InputField from '../../common/FormControls/InputField'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { Button } from '@mui/material'
+import PasswordField from '../../common/FormControls/PasswordField'
 
 interface RegisterFormInputs {
-  title: string
-  fullname: string
+  fullName: string
+  email: string
+  password: string
+  retypePassword: string
 }
 
 export interface RegisterFormProps {
@@ -15,23 +18,44 @@ export interface RegisterFormProps {
 export default function RegisterForm({ onSubmit }: RegisterFormProps) {
   const schema = yup
     .object({
-      title: yup.string().required('Please enter title'),
-      fullname: yup.string().required('Please enter title'),
+      fullName: yup.string().required('Please enter title'),
+      email: yup.string().required('Please enter title'),
+      // password: yup.string().required('Please enter title'),
+      // retypePassword: yup.string().required('Please enter title'),
     })
     .required()
 
   const form = useForm<RegisterFormInputs>({
+    defaultValues: {
+      fullName: '',
+      email: '',
+      password: '',
+      retypePassword: '',
+    },
     resolver: yupResolver(schema),
   })
 
   const onSubmitForm = (values: any) => {
     console.log(values)
+    if (onSubmit) {
+      onSubmit(values)
+    }
+    form.reset()
   }
   return (
     <form onSubmit={form.handleSubmit(onSubmitForm)}>
-      <InputField name="title" label="Test" form={form} control={form.control} />
-      <InputField name="fullname" label="fullname" form={form} control={form.control} />
-      <input type="submit" />
+      <InputField name="fullName" label="Full Name" form={form} control={form.control} />
+      <InputField name="email" label="Email" form={form} control={form.control} />
+      <PasswordField name="password" label="Password" form={form} control={form.control} />
+      <PasswordField
+        name="retypePassword"
+        label="Retype Password"
+        form={form}
+        control={form.control}
+      />
+      <Button variant="contained" color="primary" fullWidth sx={{ marginTop: '1rem' }}>
+        Create Account
+      </Button>
     </form>
   )
 }

@@ -6,14 +6,12 @@ import AppBar from '@mui/material/AppBar'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
-import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import Toolbar from '@mui/material/Toolbar'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Register from '../../Auth/Register'
-import TestForm from '../../Auth/TestForm'
 import { Search, SearchIconWrapper, StyledInputBase } from './common'
 import './index.css'
 
@@ -97,13 +95,24 @@ export function HeaderDeskTop() {
       </AppBar>
       <Dialog
         open={open}
-        onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         disableEscapeKeyDown
+        onClose={(event, reason) => {
+          if (reason === 'backdropClick') {
+            return
+          }
+        }}
       >
-        <DialogTitle id="alert-dialog-title">Welcome To Ecommerce </DialogTitle>
-        <Typography>Log in with email & password</Typography>
+        <DialogTitle
+          id="alert-dialog-title"
+          sx={{ textAlign: 'center', fontWeight: '700', color: '#0f3460' }}
+        >
+          Welcome To Ecommerce
+        </DialogTitle>
+        <Typography sx={{ textAlign: 'center', fontWeight: '400', fontSize: '0.8rem' }}>
+          Log in with email & password
+        </Typography>
         <DialogContent>
           <Register />
         </DialogContent>
