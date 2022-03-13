@@ -21,3 +21,16 @@ export interface HomeProductReponse<T> {
   hot: T[]
   discount: T[]
 }
+
+export interface RegisterReponse {
+  jwt: 'string'
+  user: any
+}
+
+export interface RegisterFormInputs {
+  fullName: string
+  email: string
+  password: string
+  retypePassword: string
+  username?: string
+}

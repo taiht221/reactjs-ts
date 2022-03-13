@@ -1,31 +1,37 @@
-import HomeIcon from '@mui/icons-material/Home'
-import MenuBookIcon from '@mui/icons-material/MenuBook'
-import MenuIcon from '@mui/icons-material/Menu'
 import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined'
+import HomeIcon from '@mui/icons-material/Home'
+import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import {
   Box,
+  Button,
   Container,
-  Drawer,
-  IconButton,
-  List,
+  Dialog,
+  DialogActions,
+  DialogContent,
   ListItem,
   ListItemIcon,
   Paper,
   Stack,
 } from '@mui/material'
-import clsx from 'clsx'
-import { ROUTE_LIST } from './router'
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
-import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
-import { Link, useParams, useLocation } from 'react-router-dom'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import Register from '../../pages/Auth/Register'
 import './index.css'
+import { ROUTE_LIST } from './router'
 export function HeaderMobile() {
+  const [open, setOpen] = useState(false)
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
   const iconList = [
     <HomeIcon key="first" />,
     <FilterListOutlinedIcon key="second" />,
     <LocalMallOutlinedIcon key="third" />,
-    <PersonOutlineIcon key="four" />,
+    <PersonOutlineIcon key="four" onClick={handleClickOpen} />,
   ]
   return (
     <Box
@@ -45,7 +51,7 @@ export function HeaderMobile() {
             {ROUTE_LIST.map((route, index) => (
               <ListItem
                 button
-                key={route.path}
+                key={index}
                 sx={{
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -54,7 +60,7 @@ export function HeaderMobile() {
                 }}
               >
                 <ListItemIcon sx={{ minWidth: 'unset' }}>{iconList[index]}</ListItemIcon>
-                <NavLink key={route.path} to={route.path} className="header-link">
+                <NavLink key={route.path} to={route?.path} className="header-link">
                   {route.label}
                 </NavLink>
               </ListItem>
@@ -62,6 +68,28 @@ export function HeaderMobile() {
           </Stack>
         </Container>
       </Paper>
+
+      <Dialog
+        open={open}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        disableEscapeKeyDown
+        onClose={(event, reason) => {
+          if (reason === 'backdropClick') {
+            return
+          }
+        }}
+      >
+        <DialogContent>
+          <Register closeDialog={handleClose} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose} autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   )
 }

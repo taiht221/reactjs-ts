@@ -1,17 +1,16 @@
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import SearchIcon from '@mui/icons-material/Search'
-import { Badge, Box, Button, Container, Stack, Typography } from '@mui/material'
+import { Badge, Box, Button, Container, Stack } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
-import DialogTitle from '@mui/material/DialogTitle'
 import Toolbar from '@mui/material/Toolbar'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Register from '../../Auth/Register'
+import Register from '../../pages/Auth/Register'
 import { Search, SearchIconWrapper, StyledInputBase } from './common'
 import './index.css'
 
@@ -36,9 +35,6 @@ export function HeaderDeskTop() {
 
   const handleClose = () => {
     setOpen(false)
-  }
-  const handleTestFormSubmit = (value: string) => {
-    console.log(value)
   }
 
   return (
@@ -104,23 +100,11 @@ export function HeaderDeskTop() {
           }
         }}
       >
-        <DialogTitle
-          id="alert-dialog-title"
-          sx={{ textAlign: 'center', fontWeight: '700', color: '#0f3460' }}
-        >
-          Welcome To Ecommerce
-        </DialogTitle>
-        <Typography sx={{ textAlign: 'center', fontWeight: '400', fontSize: '0.8rem' }}>
-          Log in with email & password
-        </Typography>
         <DialogContent>
-          <Register />
+          <Register closeDialog={handleClose} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
         </DialogActions>
       </Dialog>
     </Box>

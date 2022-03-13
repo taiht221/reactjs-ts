@@ -1,14 +1,14 @@
 import Box from '@mui/material/Box'
 import * as React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Footer from './components/common/Footer'
-import Header from './components/common/Header'
-import Account from './components/pages/Account'
-import Cart from './components/pages/Cart'
-import Caterogy from './components/pages/Category'
-import Home from './components/pages/Home'
-import NotFound from './components/pages/NotFound'
-import ProductDetail from './components/pages/ProductDetail'
+import Footer from './layout/Footer'
+import Header from './layout/Header'
+import Account from './pages/Account'
+import Cart from './pages/Cart'
+import Caterogy from './pages/Category'
+import Home from './pages/Home'
+import NotFound from './pages/NotFound'
+import ProductDetail from './pages/ProductDetail'
 export default function App() {
   return (
     <Box>

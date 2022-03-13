@@ -41,6 +41,7 @@ export default function InputField(props: InputFieldProps) {
             value={value}
             disabled={disabled}
             placeholder={placeholder}
+            sx={{ '& label.Mui-focused': { color: 'orange' } }}
           />
         </>
       )}

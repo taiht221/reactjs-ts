@@ -1,10 +1,10 @@
+import { RegisterFormInputs } from './../models/common'
+import { RegisterReponse } from '../models/common'
 import axiosClient from './axiosClient'
 
 const userApi = {
-  register(data: any) {
-    const url = '/elearning/v4/register'
-
-    return axiosClient.post(url, data)
+  register(params: RegisterFormInputs): Promise<any> {
+    return axiosClient.post('https://api.ezfrontend.com/auth/local/register', params)
   },
   login(data: any) {
     const url = '/elearning/v4/login'

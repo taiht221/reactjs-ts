@@ -67,6 +67,7 @@ export default function PasswordField(props: PasswordFieldProps) {
                 placeholder={placeholder}
                 error={invalid}
                 disabled={disabled}
+                classes={{ focused: 'dff' }}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton

@@ -1,10 +1,10 @@
-import { ListReponse } from '../../../models/common'
-import detailsApi from '../../../api/detailsApi'
+import { ListReponse } from '../../models/common'
+import detailsApi from '../../api/detailsApi'
 import { useEffect, useState } from 'react'
 import { useLocation, useRoutes, useParams } from 'react-router-dom'
 
 import { Box } from '@mui/material'
-import Loading from '../../common/Loading'
+import Loading from '../../layout/Loading'
 
 export default function ProductDetail() {
   let { slug } = useParams()
