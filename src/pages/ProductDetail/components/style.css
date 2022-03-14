@@ -1,0 +1,9 @@
+.hide-infor {
+  overflow: hidden;
+  height: 300px;
+}
+.show-more {
+  color: white;
+  display: block;
+  margin: 0 auto;
+}

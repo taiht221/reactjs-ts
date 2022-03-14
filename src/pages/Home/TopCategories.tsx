@@ -17,7 +17,6 @@ export interface TopCategoriesProps {
 }
 
 export function TopCategories({ data }: TopCategoriesProps) {
-  console.log(data)
   return (
     <Box component="section" bgcolor="#f6f9fc" pb={4} pt={2}>
       <Container>
@@ -85,6 +84,7 @@ export function TopCategories({ data }: TopCategoriesProps) {
                 price_usd={card.price_usd}
                 categories={card.categories}
                 slug={card.slug}
+                rating={card?.rating_average}
               />
             </SwiperSlide>
           ))}

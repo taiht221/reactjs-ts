@@ -33,7 +33,7 @@ export default function Home() {
   }
 
   return (
-    <Box sx={{ minHeight: 1000 }}>
+    <Box>
       <Carousel />
       <TopCategories data={homeProduct.hot} />
       <BigDiscount data={homeProduct.discount} />

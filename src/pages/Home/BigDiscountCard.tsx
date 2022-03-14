@@ -1,7 +1,7 @@
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined'
 import StarIcon from '@mui/icons-material/Star'
 import StarOutlineIcon from '@mui/icons-material/StarOutline'
-import { Button, Chip, Stack } from '@mui/material'
+import { Button, Chip, Rating, Stack } from '@mui/material'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
@@ -16,6 +16,7 @@ type BigDiscountCardProps = {
   price_usd: number
   imageUrl: string
   slug: string
+  rating: any
 }
 export function BigDiscountCard({
   discount_rate,
@@ -24,6 +25,7 @@ export function BigDiscountCard({
   price_usd,
   imageUrl,
   slug,
+  rating,
 }: BigDiscountCardProps) {
   return (
     <Card>
@@ -49,12 +51,16 @@ export function BigDiscountCard({
         >
           {name}
         </Typography>
-        <Stack direction="row">
-          <StarIcon sx={{ color: '#faaf00' }}></StarIcon>
-          <StarIcon sx={{ color: '#faaf00' }}></StarIcon>
-          <StarIcon sx={{ color: '#faaf00' }}></StarIcon>
-          <StarIcon sx={{ color: '#faaf00' }}></StarIcon>
-          <StarOutlineIcon sx={{ color: '#cecece' }}></StarOutlineIcon>
+        <Stack direction="row" alignItems="center" mb={2}>
+          {rating === 0 ? (
+            <Typography component="span" variant="body2">
+              Product dont have any review.
+            </Typography>
+          ) : (
+            <>
+              <Rating name="half-rating" defaultValue={rating} precision={0.5} readOnly />
+            </>
+          )}
         </Stack>
         <Stack direction="row" justifyContent="space-between" mt={2} alignItems="center">
           <Box component="span" color="primary.main">

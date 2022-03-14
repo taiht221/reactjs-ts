@@ -9,7 +9,9 @@ import DialogContent from '@mui/material/DialogContent'
 import Toolbar from '@mui/material/Toolbar'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { RootState } from '../../app/store'
 import Register from '../../pages/Auth/Register'
 import { Search, SearchIconWrapper, StyledInputBase } from './common'
 import './index.css'
@@ -19,7 +21,7 @@ export function HeaderDeskTop() {
   const [isLoggedIn, setisLoggedIn] = useState(false)
   const navigate = useNavigate()
   const [scrollY, setScrollY] = useState(window.scrollY)
-
+  const cartQuantity = useSelector((state: RootState) => state.cart.cartValue)
   useEffect(() => {
     const onScroll = () => setScrollY(window.pageYOffset)
     // clean up code
@@ -81,7 +83,7 @@ export function HeaderDeskTop() {
                 color="inherit"
                 sx={{ bgcolor: '#F3F5F9', borderRadius: '50%', minWidth: 'unset' }}
               >
-                <Badge badgeContent={4} color="primary" max={99}>
+                <Badge badgeContent={cartQuantity} color="primary" max={99}>
                   <LocalMallOutlinedIcon />
                 </Badge>
               </Button>
