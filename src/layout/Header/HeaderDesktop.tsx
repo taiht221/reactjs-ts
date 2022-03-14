@@ -1,10 +1,10 @@
+import { Close } from '@mui/icons-material'
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import SearchIcon from '@mui/icons-material/Search'
-import { Badge, Box, Button, Container, Stack } from '@mui/material'
+import { Badge, Box, Button, Container, IconButton, Stack } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Dialog from '@mui/material/Dialog'
-import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import Toolbar from '@mui/material/Toolbar'
 import clsx from 'clsx'
@@ -12,14 +12,19 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { RootState } from '../../app/store'
+import Login from '../../pages/Auth/Login'
 import Register from '../../pages/Auth/Register'
 import { Search, SearchIconWrapper, StyledInputBase } from './common'
 import './index.css'
 
+const MODE = {
+  LOGIN: 'login',
+  REGISTER: 'register',
+}
+
 export function HeaderDeskTop() {
+  const [mode, setMode] = useState(MODE.LOGIN)
   const [open, setOpen] = useState(false)
-  const [isLoggedIn, setisLoggedIn] = useState(false)
-  const navigate = useNavigate()
   const [scrollY, setScrollY] = useState(window.scrollY)
   const cartQuantity = useSelector((state: RootState) => state.cart.cartValue)
   useEffect(() => {
@@ -101,13 +106,39 @@ export function HeaderDeskTop() {
             return
           }
         }}
+        sx={{ '.MuiPaper-root': { minWidth: '30%' } }}
       >
         <DialogContent>
-          <Register closeDialog={handleClose} />
+          {mode === MODE.LOGIN && (
+            <>
+              <Login closeDialog={handleClose} />
+              <Box component="p" sx={{ margin: '0', textAlign: 'center' }}>
+                Don’t have account?
+                <Button color="primary" onClick={() => setMode(MODE.REGISTER)}>
+                  Register
+                </Button>
+              </Box>
+            </>
+          )}
+          {mode === MODE.REGISTER && (
+            <>
+              <Register closeDialog={handleClose} />
+              <Box component="p" sx={{ margin: '0', textAlign: 'center' }}>
+                Already have account?
+                <Button color="primary" onClick={() => setMode(MODE.LOGIN)}>
+                  Log In
+                </Button>
+              </Box>
+            </>
+          )}
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-        </DialogActions>
+        <IconButton
+          sx={{ position: 'absolute', top: '1rem', right: '1rem', color: '#0f3460' }}
+          size="large"
+          onClick={handleClose}
+        >
+          <Close />
+        </IconButton>
       </Dialog>
     </Box>
   )

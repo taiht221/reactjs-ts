@@ -31,7 +31,7 @@ export default function Home() {
   if (!homeProduct) {
     return <Loading />
   }
-
+  document.title = 'Home'
   return (
     <Box>
       <Carousel />

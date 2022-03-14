@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { Carousel } from 'react-responsive-carousel'
-import PropTypes from 'prop-types'
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Box, Rating, Stack, Typography } from '@mui/material'
+import React from 'react'
+import { Carousel } from 'react-responsive-carousel'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { AddToCart } from '../../Auth/AddToCart'
 
 export interface IProductInformationProps {

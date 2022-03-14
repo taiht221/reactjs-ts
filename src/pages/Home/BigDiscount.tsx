@@ -17,7 +17,6 @@ export interface BigDiscountProps {
 }
 
 export function BigDiscount({ data }: BigDiscountProps) {
-  console.log(data)
   return (
     <Box component="section" bgcolor="#f6f9fc" pb={4} pt={2}>
       <Container>

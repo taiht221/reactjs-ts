@@ -25,7 +25,3 @@
 .header-link.active {
   color: rgb(210, 63, 87);
 }
-
-.MuiPaper-root {
-  min-width: 30%;
-}

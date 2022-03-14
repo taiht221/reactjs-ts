@@ -6,11 +6,12 @@ import { RegisterFormInputs } from '../../../models/common'
 import RegisterForm from '../RegisterForm'
 import { register } from '../userSlice'
 import { useSnackbar } from 'notistack'
-export interface IRegisterProps {
+
+export interface RegisterProps {
   closeDialog: () => void
 }
 
-export default function Register({ closeDialog }: IRegisterProps) {
+export default function Register({ closeDialog }: RegisterProps) {
   // const dispatch = useDispatch()
   const { enqueueSnackbar } = useSnackbar()
   const dispatch: AppDispatch = useDispatch()

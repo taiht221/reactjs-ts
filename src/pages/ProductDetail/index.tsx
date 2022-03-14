@@ -9,6 +9,7 @@ import { truncateText } from '../../utils'
 import NotFound from '../NotFound'
 import ProductDescription from './components/ProductDescription'
 import ProductInformation from './components/ProductInformation'
+import RelatedProducts from './components/RelatedProducts'
 export default function ProductDetail() {
   let { slug } = useParams()
   //   const router = useRoutes()
@@ -31,6 +32,7 @@ export default function ProductDetail() {
   if (productDetail[0] === undefined) {
     return <NotFound />
   }
+  document.title = productDetail[0]?.name
   return (
     <Box
       component="main"
@@ -47,6 +49,7 @@ export default function ProductDetail() {
         />
         <ProductInformation data={productDetail[0]} />
         <ProductDescription data={productDetail[0]} />
+        <RelatedProducts data={productDetail[0]} />
       </Container>
     </Box>
   )

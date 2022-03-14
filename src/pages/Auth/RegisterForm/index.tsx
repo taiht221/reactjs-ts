@@ -51,12 +51,12 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
       {isSubmitting && <LinearProgress />}
       <DialogTitle
         id="alert-dialog-title"
-        sx={{ textAlign: 'center', fontWeight: '700', color: '#0f3460' }}
+        sx={{ textAlign: 'center', fontWeight: '700', color: '#0f3460', padding: '2px 4px' }}
       >
-        Welcome To Ecommerce
+        Create Your Account
       </DialogTitle>
       <Typography sx={{ textAlign: 'center', fontWeight: '400', fontSize: '0.8rem' }}>
-        Log in with email & password
+        Please fill all fields to continue
       </Typography>
       <form onSubmit={form.handleSubmit(onSubmitForm)}>
         <InputField

@@ -34,3 +34,12 @@ export interface RegisterFormInputs {
   retypePassword: string
   username?: string
 }
+export interface LoginFormInputs {
+  email: string
+  password: string
+}
+export interface userState {
+  loading: boolean
+  current: any
+  setting: any
+}

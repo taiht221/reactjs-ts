@@ -7,3 +7,9 @@
   display: block;
   margin: 0 auto;
 }
+.description-wrap img {
+  width: 70%;
+  height: 70%;
+  margin: 0 auto;
+  display: block;
+}

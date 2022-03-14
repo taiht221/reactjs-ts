@@ -1,6 +1,4 @@
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined'
-import StarIcon from '@mui/icons-material/Star'
-import StarOutlineIcon from '@mui/icons-material/StarOutline'
 import { Button, Chip, Rating, Stack } from '@mui/material'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
