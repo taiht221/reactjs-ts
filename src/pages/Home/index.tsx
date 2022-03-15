@@ -1,4 +1,5 @@
 import { Box } from '@mui/material'
+import { useSnackbar } from 'notistack'
 import { useEffect, useState } from 'react'
 import homeProductApi from '../../api/homeProductApi'
 import Loading from '../../layout/Loading'
@@ -13,6 +14,8 @@ type HomeProps = {
 }
 
 export default function Home() {
+  const { enqueueSnackbar } = useSnackbar()
+
   const [homeProduct, sethomeProduct] = useState<HomeProps>()
 
   const fetchProducts = async () => {
@@ -23,8 +26,10 @@ export default function Home() {
   useEffect(() => {
     try {
       fetchProducts()
-    } catch (error) {
-      console.log(error)
+    } catch (error:any) {
+      if (error) {
+        enqueueSnackbar(error?.message, { variant: 'error' })
+      }
     }
   }, [])
 

@@ -8,7 +8,6 @@ const axiosClient = axios.create({
 })
 
 export default axiosClient
-
 /// Add a request interceptor
 axiosClient.interceptors.request.use(
   function (config) {
@@ -31,6 +30,7 @@ axiosClient.interceptors.response.use(
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     const { config, status, data } = error.response
+
     const URLS = [
       'https://api.ezfrontend.com/auth/local/register',
       'https://api.ezfrontend.com/auth/local',

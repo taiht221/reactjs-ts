@@ -26,10 +26,8 @@ export default function Register({ closeDialog }: RegisterProps) {
       closeDialog()
 
       enqueueSnackbar('Register successfully!', { variant: 'success' })
-    } catch (error: any) {
-      if (error) {
-        enqueueSnackbar(error?.message, { variant: 'error' })
-      }
+    } catch (error) {
+        enqueueSnackbar("Some thing went wrong! Please refresh page again.", { variant: 'error' })
     }
   }
   return (
