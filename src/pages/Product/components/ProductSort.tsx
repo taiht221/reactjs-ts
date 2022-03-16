@@ -8,18 +8,28 @@ export interface ProductSortProps {
   currentSort?: string
   onChange: (newValue?: any) => void
   result?: number
+  categoryName: string
 }
 
-export default function ProductSort({ currentSort, onChange, result }: ProductSortProps) {
+export default function ProductSort({
+  currentSort,
+  onChange,
+  result,
+  categoryName = 'All Product',
+}: ProductSortProps) {
   const handleSortChange = (e: any, newValue: any) => {
     if (onChange) onChange(newValue)
   }
+  document.title = categoryName.toUpperCase()
   return (
     <>
       <Paper>
         <Stack margin={2} padding={2} direction="row" justifyContent="space-between">
           <Stack>
-            <Typography variant="body1">Searching for “ mobile phone ”</Typography>
+            <Typography
+              variant="body1"
+              sx={{ textTransform: 'capitalize' }}
+            >{`Searching for "${categoryName}"`}</Typography>
             <Typography variant="body2" fontWeight="400">
               {result} results found
             </Typography>

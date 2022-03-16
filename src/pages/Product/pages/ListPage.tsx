@@ -9,10 +9,12 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import ProductSort from '../components/ProductSort'
 import queryString from 'query-string'
 import ProductFilters from '../components/ProductFilters'
+import Breadcrumbs from '../../../layout/Breadcrumbs'
 export default function ListPage() {
   const [productList, setProductList] = useState<Array<any>>([])
   const [loading, setLoading] = useState<Boolean>(true)
   const [pagination, setPagination] = useState<PaginationParams>()
+  const [categoryName, setCategoryName] = useState<any>(undefined)
   const navigate = useNavigate()
   const location = useLocation()
   let { slug }: any = useParams()
@@ -28,7 +30,6 @@ export default function ListPage() {
       // free_ship_badge: params.free_ship_badge === 'true' || null,
       // is_best_price_guaranteed: params.is_best_price_guaranteed === 'true' || false,
       // support_p2h_delivery: params.support_p2h_delivery === 'true' || false,
-      // categories: Number.parseInt(slug?.substr(slug?.lastIndexOf('id') + 2)),
     }
 
     // for (const property in query) {
@@ -79,7 +80,6 @@ export default function ListPage() {
       sort: newSortValue,
     }
     navigate({
-      pathname: location.pathname,
       search: queryString.stringify(filter),
     })
   }
@@ -100,7 +100,6 @@ export default function ListPage() {
     }
 
     navigate({
-      pathname: location.pathname,
       search: queryString.stringify(filter),
     })
     // setFilter((prevFilters) => ({
@@ -111,16 +110,22 @@ export default function ListPage() {
   return (
     <Box sx={{ background: '#f6f9fc' }} pt={3}>
       <Container>
+        <Breadcrumbs links={[{ title: 'Home', link: '/' }, { title: categoryName }]} />
         <ProductSort
           currentSort={queryParams.sort}
           onChange={handleSortChange}
           result={pagination?.count}
+          categoryName={categoryName}
         />
 
         <Grid container spacing={2}>
           <Grid item md={3}>
             <Paper>
-              <ProductFilters filters={queryParams} onChange={handleFiltersChange} />
+              <ProductFilters
+                filters={queryParams}
+                onChange={handleFiltersChange}
+                setCategoryName={setCategoryName}
+              />
             </Paper>
           </Grid>
           <Grid item md={9}>

@@ -1,4 +1,4 @@
-import { Divider, List, ListItem, ListItemButton, Typography } from '@mui/material'
+import { Divider, List, ListItem, ListItemButton, Skeleton, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -10,12 +10,13 @@ interface FilterByCategoryprops {
 
 function FilterByCategory({ onChange }: FilterByCategoryprops) {
   const [categoryList, setCategoryList] = useState<Array<any>>([])
-
+  const [loading, setLoading] = useState<Boolean>(true)
   useEffect(() => {
     ;(async () => {
       try {
         const response = await categoryApi.getAll()
         setCategoryList(response)
+        setLoading(false)
       } catch (error) {
         console.log(error)
       }
@@ -26,7 +27,7 @@ function FilterByCategory({ onChange }: FilterByCategoryprops) {
 
   const handelCategoryClick = (category: any) => {
     if (onChange) {
-      onChange(category.id)
+      onChange(category.slug)
     }
   }
   return (
@@ -36,6 +37,7 @@ function FilterByCategory({ onChange }: FilterByCategoryprops) {
           Categories
         </Typography>
         <List>
+          {loading && <CategoryLoading />}
           {categoryList.map((category, i) => (
             <ListItemButton
               key={category.id}
@@ -49,6 +51,16 @@ function FilterByCategory({ onChange }: FilterByCategoryprops) {
           ))}
         </List>
       </Box>
+    </>
+  )
+}
+
+export function CategoryLoading() {
+  return (
+    <>
+      {Array.from(new Array(15)).map((x, index) => (
+        <Skeleton animation="wave" style={{ padding: '0.5rem 0' }} key={index}></Skeleton>
+      ))}
     </>
   )
 }

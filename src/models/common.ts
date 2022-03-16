@@ -52,4 +52,6 @@ export interface Query {
   is_best_price_guaranteed?: any
   support_p2h_delivery?: any
   categories?: any
+  min: number
+  max: number
 }
