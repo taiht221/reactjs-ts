@@ -64,8 +64,8 @@ export default function ProductInformation({ data }: IProductInformationProps) {
               )}
             </Stack>
 
-            <Typography component="span" variant="h5" mb={2}>
-              {data.price_usd} $$
+            <Typography component="span" variant="h5" mb={2} color="primary">
+              {Math.round(data.price_usd)} $
             </Typography>
             <Typography component="span" variant="body2">
               Stock {data.inventory_status}

@@ -15,7 +15,7 @@ export default function ProductDetail() {
   //   const router = useRoutes()
   const [productDetail, setProductDetail] = useState<Array<any>>()
   const fetchProductsDetail = async () => {
-    const { data, pagination }: ListReponse<any> = await detailsApi.getAll(slug)
+    const { data }: ListReponse<any> = await detailsApi.getAll(slug)
     setProductDetail(data)
   }
   useEffect(() => {

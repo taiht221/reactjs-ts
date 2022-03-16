@@ -8,40 +8,43 @@ import { BigDiscount } from './BigDiscount'
 import { Carousel } from './Carousel'
 import { TopCategories } from './TopCategories'
 
-type HomeProps = {
-  hot: any[]
-  discount: any[]
+type HomeProps<T> = {
+  hot: T[]
+  discount: T[]
 }
 
 export default function Home() {
   const { enqueueSnackbar } = useSnackbar()
 
-  const [homeProduct, sethomeProduct] = useState<HomeProps>()
+  const [homeProduct, sethomeProduct] = useState<HomeProps<any>>()
+  const [loading, setLoading] = useState<Boolean>(true)
 
   const fetchProducts = async () => {
-    const productList: HomeProps = await homeProductApi.getAll()
+    const productList: {
+      hot: any[]
+      discount: any[]
+    } = await homeProductApi.getAll()
     sethomeProduct(productList)
   }
 
   useEffect(() => {
     try {
       fetchProducts()
-    } catch (error:any) {
-      if (error) {
-        enqueueSnackbar(error?.message, { variant: 'error' })
-      }
+      document.title = 'Home'
+    } catch (error: any) {
+      enqueueSnackbar('Something went wrong! Please reload page again', { variant: 'error' })
     }
+    setLoading(false)
   }, [])
 
   if (!homeProduct) {
     return <Loading />
   }
-  document.title = 'Home'
   return (
     <Box>
       <Carousel />
-      <TopCategories data={homeProduct.hot} />
-      <BigDiscount data={homeProduct.discount} />
+      <TopCategories data={homeProduct?.hot} loading={loading} />
+      <BigDiscount data={homeProduct?.discount} loading={loading} />
       <Benefit />
     </Box>
   )

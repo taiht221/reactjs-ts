@@ -1,12 +1,14 @@
 export interface PaginationParams {
-  _limit: number
-  _page: number
-  _totalRows: number
+  currentPage: number
+  totalPage: number
+  count: number
+  perPage: number
+  nextPage: number
 }
 
 export interface ListReponse<T> {
   data: T[]
-  pagination: PaginationParams
+  paginate: PaginationParams
 }
 
 export interface ListParams {
@@ -42,4 +44,12 @@ export interface userState {
   loading: boolean
   current: any
   setting: any
+}
+export interface Query {
+  page?: any
+  sort?: any
+  free_ship_badge?: any
+  is_best_price_guaranteed?: any
+  support_p2h_delivery?: any
+  categories?: any
 }

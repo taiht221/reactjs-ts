@@ -45,7 +45,7 @@ export function Carousel() {
                   sx={{ color: 'white', display: 'block' }}
                   size="large"
                   onClick={() => {
-                    navigate('/category')
+                    navigate('/product')
                   }}
                 >
                   Shop Now
@@ -86,7 +86,7 @@ export function Carousel() {
                   sx={{ color: 'white', display: 'block' }}
                   size="large"
                   onClick={() => {
-                    navigate('/category')
+                    navigate('/product')
                   }}
                 >
                   Shop Now

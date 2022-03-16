@@ -6,34 +6,36 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/system'
 import { Link } from 'react-router-dom'
-import './index.css'
-type BigDiscountCardProps = {
-  discount_rate: string
-  name: string
-  categories: number
-  price_usd: number
-  imageUrl: string
-  slug: string
-  rating: any
+import { THUMBNAIL_PLACEHOLDER } from '../../constant'
+import './style.css'
+type ProductCardProps = {
+  product: {
+    discount_rate: number
+    name: string
+    categories: number
+    price_usd: number
+    images: any
+    slug: string
+    rating_average: any
+  }
 }
-export function BigDiscountCard({
-  discount_rate,
-  name,
-  categories,
-  price_usd,
-  imageUrl,
-  slug,
-  rating,
-}: BigDiscountCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
   return (
     <Card>
-      <Chip label={`${discount_rate} %OFF`} color="error" sx={{ margin: '1rem' }} />
-      <Link to={`/${slug}`}>
+      {product.discount_rate > 0 && (
+        <Chip label={`${product.discount_rate} %OFF`} color="error" sx={{ margin: '1rem' }} />
+      )}
+
+      <Link to={`/${product.slug}`}>
         <CardMedia
           component="img"
           height="200"
-          image={imageUrl}
-          alt={name}
+          image={
+            product.images[0].thumbnail_url === 'https://salt.tikicdn.com/assets/img/image.svg'
+              ? THUMBNAIL_PLACEHOLDER
+              : product.images[0].thumbnail_url
+          }
+          alt={product.name}
           sx={{ objectFit: 'none' }}
           className="swiper-lazy"
         />
@@ -47,22 +49,27 @@ export function BigDiscountCard({
           mt={2}
           className="truncate"
         >
-          {name}
+          {product.name}
         </Typography>
         <Stack direction="row" alignItems="center" mb={2}>
-          {rating === 0 ? (
+          {product.rating_average === 0 ? (
             <Typography component="span" variant="body2">
               Product dont have any review.
             </Typography>
           ) : (
             <>
-              <Rating name="half-rating" defaultValue={rating} precision={0.5} readOnly />
+              <Rating
+                name="half-rating"
+                defaultValue={product.rating_average}
+                precision={0.5}
+                readOnly
+              />
             </>
           )}
         </Stack>
         <Stack direction="row" justifyContent="space-between" mt={2} alignItems="center">
           <Box component="span" color="primary.main">
-            {price_usd} $
+            {product.price_usd} $
           </Box>
           <Button>
             <AddBoxOutlinedIcon color="primary"></AddBoxOutlinedIcon>

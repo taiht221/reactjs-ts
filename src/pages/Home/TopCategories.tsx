@@ -9,14 +9,16 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { BigDiscountCard } from './BigDiscountCard'
+import { ProductCard } from '../../layout/ProductCard'
+import { ProductCardLoading } from '../../layout/ProductCardLoading'
 import './index.css'
 
 export interface TopCategoriesProps {
-  data: Array<any>
+  data?: Array<any>
+  loading: Boolean
 }
 
-export function TopCategories({ data }: TopCategoriesProps) {
+export function TopCategories({ data = [], loading }: TopCategoriesProps) {
   return (
     <Box component="section" bgcolor="#f6f9fc" pb={4} pt={2}>
       <Container>
@@ -33,7 +35,7 @@ export function TopCategories({ data }: TopCategoriesProps) {
             </Typography>
           </Stack>
           <Box sx={{ display: { xs: 'none', md: 'inline' } }} color="secondary.light">
-            <Link to="/category" className="flexbox">
+            <Link to="/product" className="flexbox">
               View all
               <ArrowRightOutlinedIcon />
             </Link>
@@ -75,17 +77,13 @@ export function TopCategories({ data }: TopCategoriesProps) {
             },
           }}
         >
-          {data.map((card: any, index) => (
+          {data.map((product, index) => (
             <SwiperSlide key={index}>
-              <BigDiscountCard
-                discount_rate={card.discount_rate}
-                name={card.name}
-                imageUrl={card.images[0].thumbnail_url}
-                price_usd={card.price_usd}
-                categories={card.categories}
-                slug={card.slug}
-                rating={card?.rating_average}
-              />
+              {loading ? (
+                <ProductCardLoading length={product.length} />
+              ) : (
+                <ProductCard product={product} />
+              )}
             </SwiperSlide>
           ))}
         </Swiper>

@@ -9,14 +9,16 @@ import { Navigation } from 'swiper'
 import 'swiper/css'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { BigDiscountCard } from './BigDiscountCard'
+import { ProductCard } from '../../layout/ProductCard'
+import { ProductCardLoading } from '../../layout/ProductCardLoading'
 import './index.css'
 
 export interface BigDiscountProps {
-  data: Array<any>
+  data?: Array<any>
+  loading: Boolean
 }
 
-export function BigDiscount({ data }: BigDiscountProps) {
+export function BigDiscount({ data = [], loading }: BigDiscountProps) {
   return (
     <Box component="section" bgcolor="#f6f9fc" pb={4} pt={2}>
       <Container>
@@ -33,7 +35,7 @@ export function BigDiscount({ data }: BigDiscountProps) {
             </Typography>
           </Stack>
           <Box sx={{ display: { xs: 'none', md: 'inline' } }} color="secondary.light">
-            <Link to="/category" className="flexbox">
+            <Link to="/product" className="flexbox">
               View all
               <ArrowRightOutlinedIcon />
             </Link>
@@ -76,17 +78,13 @@ export function BigDiscount({ data }: BigDiscountProps) {
             },
           }}
         >
-          {data.map((card: any, index) => (
+          {data.map((product, index) => (
             <SwiperSlide key={index}>
-              <BigDiscountCard
-                discount_rate={card.discount_rate}
-                name={card.name}
-                imageUrl={card.images[0].thumbnail_url}
-                price_usd={card.price_usd}
-                categories={card.categories}
-                slug={card.slug}
-                rating={card.rating_average}
-              />
+              {loading ? (
+                <ProductCardLoading length={product.length} />
+              ) : (
+                <ProductCard product={product} />
+              )}
             </SwiperSlide>
           ))}
         </Swiper>
