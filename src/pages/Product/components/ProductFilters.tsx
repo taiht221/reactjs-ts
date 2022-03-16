@@ -14,6 +14,7 @@ function ProductFilters({ filters, onChange }: ProductFiltersprops) {
   const handleCategoryChange = (newCategoryId: any) => {
     if (!onChange) return
     const newFilters = {
+      ...filters,
       categories: newCategoryId,
     }
     onChange(newFilters)

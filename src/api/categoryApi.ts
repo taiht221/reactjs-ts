@@ -1,30 +1,30 @@
 import axiosClient from './axiosClient'
 
 const categoryApi = {
-  getAll(params: []) {
+  getAll(): Promise<Array<any>> {
     const url = '/categories'
-    return axiosClient.get(url, { params })
-  },
-
-  get(id: string) {
-    const url = `/categories?id=${id}`
     return axiosClient.get(url)
   },
 
-  add(data: {}) {
-    const url = `/categories`
-    return axiosClient.post(url, data)
-  },
+  // get(id: string) {
+  //   const url = `/categories?id=${id}`
+  //   return axiosClient.get(url)
+  // },
 
-  update(data: any) {
-    const url = `/categories/${data.id}`
-    return axiosClient.patch(url, data)
-  },
+  // add(data: {}) {
+  //   const url = `/categories`
+  //   return axiosClient.post(url, data)
+  // },
 
-  remove(data: any) {
-    const url = `/categories/${data.id}`
-    return axiosClient.delete(url, data)
-  },
+  // update(data: any) {
+  //   const url = `/categories/${data.id}`
+  //   return axiosClient.patch(url, data)
+  // },
+
+  // remove(data: any) {
+  //   const url = `/categories/${data.id}`
+  //   return axiosClient.delete(url, data)
+  // },
 }
 
 export default categoryApi

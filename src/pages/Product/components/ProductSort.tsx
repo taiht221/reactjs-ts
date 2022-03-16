@@ -7,9 +7,10 @@ import { Paper, Stack } from '@mui/material'
 export interface ProductSortProps {
   currentSort?: string
   onChange: (newValue?: any) => void
+  result?: number
 }
 
-export default function ProductSort({ currentSort, onChange }: ProductSortProps) {
+export default function ProductSort({ currentSort, onChange, result }: ProductSortProps) {
   const handleSortChange = (e: any, newValue: any) => {
     if (onChange) onChange(newValue)
   }
@@ -20,7 +21,7 @@ export default function ProductSort({ currentSort, onChange }: ProductSortProps)
           <Stack>
             <Typography variant="body1">Searching for “ mobile phone ”</Typography>
             <Typography variant="body2" fontWeight="400">
-              48 results found
+              {result} results found
             </Typography>
           </Stack>
           <Box>

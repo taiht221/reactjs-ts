@@ -22,8 +22,14 @@ type ProductCardProps = {
 export function ProductCard({ product }: ProductCardProps) {
   return (
     <Card>
-      {product.discount_rate > 0 && (
+      {product.discount_rate > 0 ? (
         <Chip label={`${product.discount_rate} %OFF`} color="error" sx={{ margin: '1rem' }} />
+      ) : (
+        <Chip
+          label={`${product.discount_rate} %OFF`}
+          color="error"
+          sx={{ margin: '1rem', visibility: 'hidden' }}
+        />
       )}
 
       <Link to={`/${product.slug}`}>

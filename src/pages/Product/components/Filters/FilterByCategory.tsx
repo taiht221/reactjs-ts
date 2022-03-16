@@ -1,47 +1,55 @@
+import { Divider, List, ListItem, ListItemButton, Typography } from '@mui/material'
+import { Box } from '@mui/system'
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import categorytApi from 'Apis/categoryApi'
 import { Link } from 'react-router-dom'
-import CategorySkeletonLoading from '../SkeletonLoading/CategorySkeletonLoading'
-import { useSelector } from 'react-redux'
+import categoryApi from '../../../../api/categoryApi'
 
 interface FilterByCategoryprops {
   onChange: (value: any) => void
 }
 
 function FilterByCategory({ onChange }: FilterByCategoryprops) {
-  const categoryList = useSelector((state) => state.category)
+  const [categoryList, setCategoryList] = useState<Array<any>>([])
 
-  const handelCategoryClick = (e) => {
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const response = await categoryApi.getAll()
+        setCategoryList(response)
+      } catch (error) {
+        console.log(error)
+      }
+    })()
+
+    return () => {}
+  }, [])
+
+  const handelCategoryClick = (category: any) => {
     if (onChange) {
-      onChange(e.id)
+      onChange(category.id)
     }
   }
   return (
-    <div className="categories">
-      {categoryList.loading ? (
-        <CategorySkeletonLoading />
-      ) : (
-        <>
-          <h2 className="title">Danh mục sản phẩm </h2>
-          <ul>
-            {categoryList.categoryData.map((e, i) => (
-              <li key={e.id}>
-                <Link
-                  to={`/search/${e.slug}`}
-                  className="category-name"
-                  onClick={() => {
-                    handelCategoryClick(e)
-                  }}
-                >
-                  {e.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-    </div>
+    <>
+      <Box padding={2}>
+        <Typography variant="h6" component="h2" color="secondary">
+          Categories
+        </Typography>
+        <List>
+          {categoryList.map((category, i) => (
+            <ListItemButton
+              key={category.id}
+              sx={{ textTransform: 'capitalize', padding: '0.5rem 0' }}
+              onClick={() => {
+                handelCategoryClick(category)
+              }}
+            >
+              {category.title.toLowerCase()}
+            </ListItemButton>
+          ))}
+        </List>
+      </Box>
+    </>
   )
 }
 

@@ -111,12 +111,17 @@ export default function ListPage() {
   return (
     <Box sx={{ background: '#f6f9fc' }} pt={3}>
       <Container>
-        <Grid container>
-          <Grid item md={12}>
-            <ProductSort currentSort={queryParams.sort} onChange={handleSortChange} />
-          </Grid>
+        <ProductSort
+          currentSort={queryParams.sort}
+          onChange={handleSortChange}
+          result={pagination?.count}
+        />
+
+        <Grid container spacing={2}>
           <Grid item md={3}>
-            <ProductFilters filters={queryParams} onChange={handleFiltersChange} />
+            <Paper>
+              <ProductFilters filters={queryParams} onChange={handleFiltersChange} />
+            </Paper>
           </Grid>
           <Grid item md={9}>
             {loading ? (
