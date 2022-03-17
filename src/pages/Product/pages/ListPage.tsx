@@ -1,20 +1,21 @@
 import { Box, Container, Grid, Paper, Stack, Typography } from '@mui/material'
+import Pagination from '@mui/material/Pagination'
+import queryString from 'query-string'
 import React, { useEffect, useMemo, useState } from 'react'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import productApi from '../../../api/productApi'
-import { ListReponse, PaginationParams, Query } from '../../../models/common'
+import Breadcrumbs from '../../../layout/Breadcrumbs'
+import { PaginationParams, Query } from '../../../models/common'
+import FilterViewer from '../components/FilterViewer'
+import ProductFilters from '../components/ProductFilters'
 import { ProductList } from '../components/ProductList'
 import { ProductLoadingPage } from '../components/ProductLoadingPage'
-import Pagination from '@mui/material/Pagination'
-import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import ProductSort from '../components/ProductSort'
-import queryString from 'query-string'
-import ProductFilters from '../components/ProductFilters'
-import Breadcrumbs from '../../../layout/Breadcrumbs'
 export default function ListPage() {
   const [productList, setProductList] = useState<Array<any>>([])
   const [loading, setLoading] = useState<Boolean>(true)
   const [pagination, setPagination] = useState<PaginationParams>()
-  const [categoryName, setCategoryName] = useState<any>(undefined)
+  const [categoryName, setCategoryName] = useState<any>('All Product')
   const navigate = useNavigate()
   const location = useLocation()
   let { slug }: any = useParams()
@@ -54,11 +55,15 @@ export default function ListPage() {
   }, [queryParams])
 
   const handlePageChange = (e: any, page: any) => {
-    // setLoading(true)
+    setLoading(true)
     // setFilters((prevFilters) => ({
     //   ...prevFilters,
     //   page: page,
     // }))
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
     const filter = {
       ...queryParams,
       page: page,
@@ -77,6 +82,7 @@ export default function ListPage() {
     // }));
     const filter = {
       ...queryParams,
+      page: 1,
       sort: newSortValue,
     }
     navigate({
@@ -84,13 +90,15 @@ export default function ListPage() {
     })
   }
   const handleFiltersChange = (newFilters: any) => {
-    setLoading(true)
+    console.log(newFilters)
     // if (newFilters.is_best_price_guaranteed === false && queryParams.is_best_price_guaranteed === false) {
     //   delete newFilters.is_best_price_guaranteed;
     //   delete queryParams.is_best_price_guaranteed;
     // }
+
     const filter = {
       ...queryParams,
+      page: 1,
       ...newFilters,
     }
     for (const property in filter) {
@@ -100,6 +108,7 @@ export default function ListPage() {
     }
 
     navigate({
+      pathname: location.pathname,
       search: queryString.stringify(filter),
     })
     // setFilter((prevFilters) => ({
@@ -133,20 +142,28 @@ export default function ListPage() {
               <ProductLoadingPage length={15} />
             ) : (
               <>
-                <ProductList data={productList}></ProductList>
+                {pagination?.count > 0 && pagination?.count !== undefined ? (
+                  <>
+                    <FilterViewer filters={queryParams} onChange={handleFiltersChange} />
 
-                <Stack direction="row" justifyContent="space-between" pt={2} pb={2}>
-                  <Typography>{`Showing 15 of ${pagination?.count} Products`}</Typography>
-                  <Pagination
-                    variant="outlined"
-                    color="primary"
-                    count={pagination?.totalPage || 1}
-                    page={pagination?.currentPage || 1}
-                    onChange={handlePageChange}
-                    hideNextButton={pagination?.totalPage === pagination?.currentPage}
-                    hidePrevButton={pagination?.currentPage === 1}
-                  ></Pagination>
-                </Stack>
+                    <ProductList data={productList}></ProductList>
+
+                    <Stack direction="row" justifyContent="space-between" pt={2} pb={2}>
+                      <Typography>{`Showing ${productList.length} of ${pagination?.count} Products`}</Typography>
+                      <Pagination
+                        variant="outlined"
+                        color="primary"
+                        count={pagination?.totalPage || 1}
+                        page={pagination?.currentPage || 1}
+                        onChange={handlePageChange}
+                        hideNextButton={pagination?.totalPage === pagination?.currentPage}
+                        hidePrevButton={pagination?.currentPage === 1}
+                      ></Pagination>
+                    </Stack>
+                  </>
+                ) : (
+                  <Typography>No result found</Typography>
+                )}
               </>
             )}
           </Grid>

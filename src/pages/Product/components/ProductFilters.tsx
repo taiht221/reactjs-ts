@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import FilterByCategory from './Filters/FilterByCategory'
 import FilterByPrice from './Filters/FilterByPrice'
 import { Divider } from '@mui/material'
+import FilterByRating from './Filters/FilterByRating'
+import FilterByStatus from './Filters/FilterBySatus'
 // import FilterByPrice from './Filters/FilterByPrice'
 // import FilterByService from './Filters/FilterByService'
 // import FilterByRating from './Filters/FilterByRating'
@@ -17,7 +19,6 @@ function ProductFilters({ filters, onChange, setCategoryName }: ProductFilterspr
   const handleCategoryChange = (newCategoryId: any) => {
     if (!onChange) return
     const newFilters = {
-      ...filters,
       categories: newCategoryId.match(/\d+/)[0],
     }
     setCategoryName(newCategoryId.replace(/[0-9]/g, '').split('-id').join('').split('-').join(' '))
@@ -25,21 +26,15 @@ function ProductFilters({ filters, onChange, setCategoryName }: ProductFilterspr
   }
   const handlePriceChange = (newPrice: any) => {
     if (onChange) onChange(newPrice)
-    const newFilters = {
-      ...filters,
-      ...newPrice,
-    }
-    onChange(newFilters)
   }
   const handleServiceChange = (newService: any) => {
     if (onChange) onChange(newService)
   }
   const handleRatingChange = (newRating: any) => {
-    if (!onChange) return
-    const newFilters = {
-      rating_average: newRating,
-    }
-    onChange(newFilters)
+    if (onChange) onChange(newRating)
+  }
+  const handleStatusChange = (newStatus: any) => {
+    if (onChange) onChange(newStatus)
   }
   return (
     <>
@@ -47,8 +42,9 @@ function ProductFilters({ filters, onChange, setCategoryName }: ProductFilterspr
       <Divider />
       <FilterByPrice onChange={handlePriceChange} />
       <Divider />
-      {/* <FilterByRating onChange={handleRatingChange} filters={filters} />
-      <FilterByService onChange={handleServiceChange} filters={filters} /> */}
+      <FilterByRating onChange={handleRatingChange} filters={filters} />
+      <Divider />
+      <FilterByStatus onChange={handleStatusChange} filters={filters} />
     </>
   )
 }

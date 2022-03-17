@@ -1,7 +1,7 @@
 export interface PaginationParams {
   currentPage: number
   totalPage: number
-  count: number
+  count?: any
   perPage: number
   nextPage: number
 }

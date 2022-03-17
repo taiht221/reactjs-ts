@@ -20,10 +20,6 @@ export default function FilterByPrice({ onChange }: FilterByPriceProps) {
   }
   const handleSubmit = () => {
     if (onChange) onChange(value)
-    setValue({
-      min: 0,
-      max: 0,
-    })
   }
   const resetPrice = () => {
     setValue({
@@ -39,19 +35,19 @@ export default function FilterByPrice({ onChange }: FilterByPriceProps) {
       <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
         <TextField
           name="min"
-          value={value.min > 0 ? value.min : 0}
+          value={value.min > 0 ? value.min : ''}
           onChange={handleChange}
           type="number"
-          variant="outlined"
+          variant="standard"
           placeholder="0"
         />
         <span>-</span>
         <TextField
           name="max"
-          value={value.max > 0 ? value.max : 0}
+          value={value.max > 0 ? value.max : ''}
           onChange={handleChange}
           type="number"
-          variant="outlined"
+          variant="standard"
           placeholder="250"
         />
       </Stack>
