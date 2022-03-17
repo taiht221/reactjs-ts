@@ -27,9 +27,6 @@ function ProductFilters({ filters, onChange, setCategoryName }: ProductFilterspr
   const handlePriceChange = (newPrice: any) => {
     if (onChange) onChange(newPrice)
   }
-  const handleServiceChange = (newService: any) => {
-    if (onChange) onChange(newService)
-  }
   const handleRatingChange = (newRating: any) => {
     if (onChange) onChange(newRating)
   }

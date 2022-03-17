@@ -18,28 +18,19 @@ export default function ListPage() {
   const [categoryName, setCategoryName] = useState<any>('All Product')
   const navigate = useNavigate()
   const location = useLocation()
-  let { slug }: any = useParams()
+
   const queryParams = useMemo(() => {
     const params: any = queryString.parse(location.search)
-    if (params.free_ship_badge === 'false') {
-      delete params.free_ship_badge
-    }
+
     const query: Query = {
       ...params,
       page: Number.parseInt(params?.page) || 1,
       sort: params.sort || 'real_price.-1',
-      // free_ship_badge: params.free_ship_badge === 'true' || null,
-      // is_best_price_guaranteed: params.is_best_price_guaranteed === 'true' || false,
-      // support_p2h_delivery: params.support_p2h_delivery === 'true' || false,
     }
 
-    // for (const property in query) {
-    //   if (!query[property]) {
-    //     delete query[property]
-    //   }
-    // }
     return query
-  }, [location.search, slug])
+  }, [location.search])
+
   useEffect(() => {
     ;(async () => {
       try {
@@ -66,10 +57,9 @@ export default function ListPage() {
     })
     const filter = {
       ...queryParams,
-      page: page,
+      page,
     }
     navigate({
-      pathname: location.pathname,
       search: queryString.stringify(filter),
     })
     // scrollTop()
@@ -90,31 +80,22 @@ export default function ListPage() {
     })
   }
   const handleFiltersChange = (newFilters: any) => {
-    console.log(newFilters)
-    // if (newFilters.is_best_price_guaranteed === false && queryParams.is_best_price_guaranteed === false) {
-    //   delete newFilters.is_best_price_guaranteed;
-    //   delete queryParams.is_best_price_guaranteed;
-    // }
+    setLoading(true)
 
     const filter = {
       ...queryParams,
-      page: 1,
       ...newFilters,
-    }
-    for (const property in filter) {
-      if (!filter[property]) {
-        delete filter[property]
-      }
+      page: 1,
     }
 
     navigate({
-      pathname: location.pathname,
       search: queryString.stringify(filter),
     })
-    // setFilter((prevFilters) => ({
-    //   ...prevFilters,
-    //   ...newFilters,
-    // }));
+  }
+  const setNewFilters = (newFilters: any) => {
+    navigate({
+      search: queryString.stringify(newFilters),
+    })
   }
   return (
     <Box sx={{ background: '#f6f9fc' }} pt={3}>
@@ -144,7 +125,7 @@ export default function ListPage() {
               <>
                 {pagination?.count > 0 && pagination?.count !== undefined ? (
                   <>
-                    <FilterViewer filters={queryParams} onChange={handleFiltersChange} />
+                    <FilterViewer filters={queryParams} onChange={setNewFilters} />
 
                     <ProductList data={productList}></ProductList>
 

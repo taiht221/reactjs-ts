@@ -20,7 +20,7 @@ const FILTER_LIST = [
       if (newFilters.inventory_status === 'available') {
         delete newFilters.inventory_status
       } else {
-        newFilters.inventory_status === 'available'
+        newFilters.inventory_status = 'available'
       }
       return newFilters
     },
@@ -53,7 +53,7 @@ const FILTER_LIST = [
   },
   {
     id: 4,
-    getLable: (filters: any) => `Từ ${filters.min} đến ${filters.max}`,
+    getLable: (filters: any) => `From ${filters.min} to ${filters.max}`,
     isActive: (filters: any) => true,
     isVisible: (filters: any) =>
       Object.keys(filters).includes('min') && Object.keys(filters).includes('max'),
@@ -68,15 +68,13 @@ const FILTER_LIST = [
   },
   {
     id: 5,
-    getLable: (filters: any) => `Từ ${filters.rating_average} sao`,
+    getLable: (filters: any) => `From ${filters.rating_average} star`,
     isActive: (filters: any) => true,
     isVisible: (filters: any) => Object.keys(filters).includes('rating_average'),
     isRemovable: true,
     onRemove: (filters: any) => {
-      console.log(filters)
       const newFilters = { ...filters }
       delete newFilters.rating_average
-      console.log(newFilters)
       return newFilters
     },
   },
