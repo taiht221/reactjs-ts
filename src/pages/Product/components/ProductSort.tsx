@@ -24,7 +24,12 @@ export default function ProductSort({
   return (
     <>
       <Paper>
-        <Stack margin={2} padding={2} direction="row" justifyContent="space-between">
+        <Stack
+          margin={2}
+          padding={2}
+          direction={{ md: 'row', xs: 'column' }}
+          justifyContent="space-between"
+        >
           <Stack>
             <Typography
               variant="body1"
@@ -41,6 +46,8 @@ export default function ProductSort({
               indicatorColor="secondary"
               textColor="inherit"
               aria-label="disabled tabs example"
+              scrollButtons="auto"
+              variant="scrollable"
             >
               <Tab label="Big Sales" value="discount_rate.-1" />
               <Tab label="Trending Products" value="sort_item.qty.-1" />

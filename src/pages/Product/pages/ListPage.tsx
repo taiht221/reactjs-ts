@@ -129,7 +129,12 @@ export default function ListPage() {
 
                     <ProductList data={productList}></ProductList>
 
-                    <Stack direction="row" justifyContent="space-between" pt={2} pb={2}>
+                    <Stack
+                      direction={{ md: 'row', xs: 'column' }}
+                      justifyContent="space-between"
+                      pt={2}
+                      pb={2}
+                    >
                       <Typography>{`Showing ${productList.length} of ${pagination?.count} Products`}</Typography>
                       <Pagination
                         variant="outlined"

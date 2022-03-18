@@ -1,4 +1,4 @@
-import { Chip, List, ListItem, Typography } from '@mui/material'
+import { Chip, List, ListItem, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useMemo } from 'react'
 
@@ -89,9 +89,11 @@ export default function FilterViewer({ filters, onChange }: FilterViewerProps) {
     console.info('You clicked the delete icon.')
   }
   return (
-    <Box>
-      <Typography variant="body2">Bộ lọc:</Typography>
-      <List>
+    <Stack direction={{ md: 'row', xs: 'column' }} alignItems="center">
+      <Typography variant="body2" display="block">
+        Filters Choose:
+      </Typography>
+      <List sx={{ flexDirection: 'row', display: 'flex' }}>
         {visibleFilters.map((e: any) => (
           <ListItem key={e.id}>
             {e.isRemovable ? (
@@ -122,6 +124,6 @@ export default function FilterViewer({ filters, onChange }: FilterViewerProps) {
           </ListItem>
         ))}
       </List>
-    </Box>
+    </Stack>
   )
 }
