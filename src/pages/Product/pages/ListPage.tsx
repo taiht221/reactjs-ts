@@ -93,6 +93,7 @@ export default function ListPage() {
     })
   }
   const setNewFilters = (newFilters: any) => {
+    setLoading(true)
     navigate({
       search: queryString.stringify(newFilters),
     })
