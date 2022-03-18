@@ -2,16 +2,17 @@ import { Box, Rating, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
-import { AddToCart } from '../../Auth/AddToCart'
+import AddToCartForm from '../../Auth/AddToCartForm'
 
 export interface IProductInformationProps {
   data: any
+  onSubmit: (values: any) => void
 }
-// image={productDetail[0]?.images}
-//           title={productDetail[0]?.name}
-//           thumbnail={productDetail[0]?.thumbnail_url}
-export default function ProductInformation({ data }: IProductInformationProps) {
-  console.log(data)
+export default function ProductInformation({ data, onSubmit }: IProductInformationProps) {
+  const handleCartSubmit = (values: any) => {
+    if (onSubmit) onSubmit(values)
+  }
+
   return (
     <Box component="section" pt={{ md: 8, xs: 4 }} pb={{ md: 9, xs: 7 }} pl={{ md: 3, xs: 0 }}>
       <Stack direction={{ md: 'row', xs: 'column' }} spacing={2}>
@@ -70,7 +71,7 @@ export default function ProductInformation({ data }: IProductInformationProps) {
             <Typography component="span" variant="body2">
               Stock {data.inventory_status}
             </Typography>
-            <AddToCart />
+            <AddToCartForm onSubmit={handleCartSubmit} />
           </Stack>
         </Box>
       </Stack>

@@ -53,7 +53,7 @@ const FILTER_LIST = [
   },
   {
     id: 4,
-    getLable: (filters: any) => `From ${filters.min} to ${filters.max}`,
+    getLable: (filters: any) => `From ${filters.min}$ to ${filters.max}$`,
     isActive: (filters: any) => true,
     isVisible: (filters: any) =>
       Object.keys(filters).includes('min') && Object.keys(filters).includes('max'),
@@ -85,9 +85,6 @@ export default function FilterViewer({ filters, onChange }: FilterViewerProps) {
     return FILTER_LIST.filter((e) => e.isVisible(filters))
   }, [filters])
 
-  const handleDelete = (e: any) => {
-    console.info('You clicked the delete icon.')
-  }
   return (
     <Stack direction={{ md: 'row', xs: 'column' }} alignItems="center">
       <Typography variant="body2" display="block">

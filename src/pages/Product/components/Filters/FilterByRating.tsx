@@ -9,7 +9,7 @@ export default function FilterByRating({ filters, onChange }: FilterByRatingProp
   const handleChange = (e: any) => {
     if (!onChange) return
     const { name, value } = e.target
-    onChange({ rating_average: name })
+    filters.rating_average == name ? null : onChange({ rating_average: name })
   }
   return (
     <Box padding={2}>

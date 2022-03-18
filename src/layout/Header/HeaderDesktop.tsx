@@ -1,4 +1,5 @@
 import { Close } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import SearchIcon from '@mui/icons-material/Search'
@@ -25,6 +26,7 @@ import { AppDispatch, RootState } from '../../app/store'
 import Login from '../../pages/Auth/Login'
 import Register from '../../pages/Auth/Register'
 import { logout } from '../../pages/Auth/userSlice'
+import { cartItemsCountSelector } from '../../pages/Cart/selector'
 import { Search, SearchIconWrapper, StyledInputBase } from './common'
 import './index.css'
 const MODE = {
@@ -35,12 +37,11 @@ const MODE = {
 export function HeaderDeskTop() {
   const [mode, setMode] = useState(MODE.LOGIN)
   const [open, setOpen] = useState(false)
-  const [scrollY, setScrollY] = useState(window.scrollY)
-  const cartQuantity = useSelector((state: RootState) => state.cart.cartValue)
   const loggedInUser = useSelector((state: RootState) => state.user.current)
   const isLoggedIn = !!loggedInUser.id
   const [anchorEl, setAnchorEl] = useState(null)
-  const dispatch: AppDispatch = useDispatch()
+  const cartItemsCount = useSelector(cartItemsCountSelector)
+  const navigate = useNavigate()
   const handleClickOpen = () => {
     setOpen(true)
   }
@@ -118,8 +119,9 @@ export function HeaderDeskTop() {
                 size="medium"
                 color="inherit"
                 sx={{ bgcolor: '#F3F5F9', borderRadius: '50%', minWidth: 'unset' }}
+                onClick={() => navigate('/cart')}
               >
-                <Badge badgeContent={cartQuantity} color="primary" max={99}>
+                <Badge badgeContent={cartItemsCount} color="primary" max={99}>
                   <LocalMallOutlinedIcon />
                 </Badge>
               </Button>

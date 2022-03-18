@@ -10,7 +10,7 @@ import FilterByStatus from './Filters/FilterBySatus'
 // import FilterByRating from './Filters/FilterByRating'
 
 interface ProductFiltersprops {
-  filters: Object
+  filters: any
   onChange: (value: any) => void
   setCategoryName: (value: string) => void
 }
@@ -22,10 +22,11 @@ function ProductFilters({ filters, onChange, setCategoryName }: ProductFilterspr
       categories: newCategoryId.match(/\d+/)[0],
     }
     setCategoryName(newCategoryId.replace(/[0-9]/g, '').split('-id').join('').split('-').join(' '))
-    onChange(newFilters)
+    filters.categories == newCategoryId.match(/\d+/)[0] ? null : onChange(newFilters)
   }
   const handlePriceChange = (newPrice: any) => {
-    if (onChange) onChange(newPrice)
+    if (!onChange) return
+    filters.max == newPrice.max ? null : onChange(newPrice)
   }
   const handleRatingChange = (newRating: any) => {
     if (onChange) onChange(newRating)

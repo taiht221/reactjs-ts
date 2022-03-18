@@ -27,14 +27,14 @@ function AddToCartForm({ onSubmit = null }: AddToCartFormProps) {
     },
     resolver: yupResolver(schema),
   })
-  const handleSubmit = async (values: any) => {
+  const handleCartSubmit = async (values: any) => {
     if (onSubmit) {
       await onSubmit(values)
     }
     form.reset()
   }
   return (
-    <form onSubmit={form.handleSubmit(handleSubmit)}>
+    <form onSubmit={form.handleSubmit(handleCartSubmit)}>
       <QuantityField
         form={form}
         name="quantity"

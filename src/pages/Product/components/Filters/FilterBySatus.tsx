@@ -10,7 +10,7 @@ export default function FilterByStatus({ filters, onChange }: FilterByStatusProp
   const handleChange = (e: any) => {
     if (!onChange) return
     const { name, value } = e.target
-    onChange({ inventory_status: name })
+    filters.inventory_status == name ? null : onChange({ inventory_status: name })
   }
   return (
     <Box padding={2}>

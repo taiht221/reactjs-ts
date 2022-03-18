@@ -45,7 +45,7 @@ export default function ProductSort({
               value={currentSort}
               indicatorColor="secondary"
               textColor="inherit"
-              aria-label="disabled tabs example"
+              aria-label="products sort"
               scrollButtons="auto"
               variant="scrollable"
             >

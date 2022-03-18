@@ -19,7 +19,8 @@ export default function FilterByPrice({ onChange }: FilterByPriceProps) {
     }))
   }
   const handleSubmit = () => {
-    if (onChange) onChange(value)
+    if (!onChange) return
+    if (value.max != 0) onChange(value)
   }
   const resetPrice = () => {
     setValue({

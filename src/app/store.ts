@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import userReducer from '../pages/Auth/userSlice'
-import cartReducer from '../pages/Auth/cartSlice'
+import cartReducer from '../pages/Cart/cartSlice'
 const rootReducer = combineReducers({
   user: userReducer,
   cart: cartReducer,
