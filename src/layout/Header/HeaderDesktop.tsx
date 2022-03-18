@@ -42,6 +42,7 @@ export function HeaderDeskTop() {
   const [anchorEl, setAnchorEl] = useState(null)
   const cartItemsCount = useSelector(cartItemsCountSelector)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const handleClickOpen = () => {
     setOpen(true)
   }
