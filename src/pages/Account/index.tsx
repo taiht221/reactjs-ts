@@ -18,9 +18,9 @@ import { RootState } from '../../app/store'
 import Address from './components/Address'
 import Orders from './components/Orders'
 import Payment from './components/Payment'
-import ProfileInfo from './components/profileInfo'
-import SupportTickets from './components/supportTickets'
-import WishList from './components/wishlist'
+import ProfileInfo from './components/ProfileInfo'
+import SupportTickets from './components/SupportTickets'
+import WishList from './components/WishList'
 export interface AccountProps {}
 
 export default function Account(props: AccountProps) {
