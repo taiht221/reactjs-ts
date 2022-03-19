@@ -1,5 +1,5 @@
+import { InputLabel, TextField } from '@mui/material'
 import { Controller, useController } from 'react-hook-form'
-import { Box, InputLabel, TextField } from '@mui/material'
 
 export interface InputFieldProps {
   form: Object

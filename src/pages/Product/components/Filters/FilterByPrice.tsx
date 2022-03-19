@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Stack, TextField, Typography } from '@mui/material'
 import { useState } from 'react'
 
 export interface FilterByPriceProps {

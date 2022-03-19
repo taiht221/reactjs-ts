@@ -1,10 +1,10 @@
-import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
 import { Button, DialogTitle, LinearProgress, Typography } from '@mui/material'
-import { RegisterFormInputs } from '../../../models/common'
-import PasswordField from '../../../components/FormControls/PasswordField'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
 import InputField from '../../../components/FormControls/InputField'
+import PasswordField from '../../../components/FormControls/PasswordField'
+import { RegisterFormInputs } from '../../../models/common'
 
 export interface RegisterFormProps {
   onSubmit: (value: any) => void

@@ -4,23 +4,26 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import SearchIcon from '@mui/icons-material/Search'
 import {
   Alert,
+  AppBar,
   Badge,
   Box,
   Button,
   Container,
+  Dialog,
+  DialogContent,
   Divider,
+  FormControl,
   IconButton,
+  InputLabel,
   Menu,
   MenuItem,
+  Select,
+  SelectChangeEvent,
   Snackbar,
   Stack,
+  Toolbar,
   Typography,
 } from '@mui/material'
-import AppBar from '@mui/material/AppBar'
-import Dialog from '@mui/material/Dialog'
-import DialogContent from '@mui/material/DialogContent'
-import Toolbar from '@mui/material/Toolbar'
-import { useSnackbar } from 'notistack'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -32,6 +35,7 @@ import { hideMiniCart } from '../../pages/Cart/cartSlice'
 import { cartItemsCountSelector } from '../../pages/Cart/selector'
 import { Search, SearchIconWrapper, StyledInputBase } from './common'
 import './index.css'
+import { CATEGORY_LIST } from './router'
 const MODE = {
   LOGIN: 'login',
   REGISTER: 'register',
@@ -70,6 +74,16 @@ export function HeaderDeskTop() {
   }
   // if (miniCartSelector) {
   //   enqueueSnackbar('Thêm vào giỏ hàng thành công', { variant: 'error' })
+  // }
+  const [openDropDown, setOpenDropDown] = useState(false)
+
+  const [category, setCategory] = useState('')
+
+  const handleChange = (event: SelectChangeEvent) => {
+    navigate(`/product/${event.target.value}`)
+  }
+  // const handleChange = () => {
+  //   console.log(1)
   // }
   return (
     <Box sx={{ flexGrow: 1 }} component="header">
@@ -148,8 +162,28 @@ export function HeaderDeskTop() {
               </Button>
             </Stack>
           </Toolbar>
+
+          <Box sx={{ maxWidth: '200px' }}>
+            <FormControl fullWidth variant="filled">
+              <InputLabel id="demo-simple-select-label">Category</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={category}
+                label="Age"
+                onChange={handleChange}
+              >
+                {CATEGORY_LIST.map((category) => (
+                  <MenuItem key={category.label} value={category.value}>
+                    {category.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
         </Container>
       </AppBar>
+
       <Dialog
         open={open}
         aria-labelledby="alert-dialog-title"

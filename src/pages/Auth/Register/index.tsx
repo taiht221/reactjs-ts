@@ -1,11 +1,11 @@
 import { unwrapResult } from '@reduxjs/toolkit'
+import { useSnackbar } from 'notistack'
 import * as React from 'react'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../../app/store'
 import { RegisterFormInputs } from '../../../models/common'
 import RegisterForm from '../RegisterForm'
 import { register } from '../userSlice'
-import { useSnackbar } from 'notistack'
 
 export interface RegisterProps {
   closeDialog: () => void
@@ -27,7 +27,7 @@ export default function Register({ closeDialog }: RegisterProps) {
 
       enqueueSnackbar('Register successfully!', { variant: 'success' })
     } catch (error) {
-        enqueueSnackbar("Some thing went wrong! Please refresh page again.", { variant: 'error' })
+      enqueueSnackbar('Some thing went wrong! Please refresh page again.', { variant: 'error' })
     }
   }
   return (

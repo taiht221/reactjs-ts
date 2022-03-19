@@ -1,7 +1,5 @@
 import { Box, Grid } from '@mui/material'
 import * as React from 'react'
-import Skeleton from '@mui/material/Skeleton'
-import { Product } from './Product'
 import { ProductCard } from '../../../layout/ProductCard'
 export interface ProductListProps<T> {
   data?: T[]

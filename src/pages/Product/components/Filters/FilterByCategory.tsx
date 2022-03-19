@@ -1,7 +1,6 @@
-import { Divider, List, ListItem, ListItemButton, Skeleton, Typography } from '@mui/material'
+import { List, ListItemButton, Skeleton, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import categoryApi from '../../../../api/categoryApi'
 
 interface FilterByCategoryprops {
@@ -24,10 +23,10 @@ function FilterByCategory({ onChange }: FilterByCategoryprops) {
 
     return () => {}
   }, [])
-
   const handelCategoryClick = (category: any) => {
     if (onChange) {
       onChange(category.slug)
+      console.log(category.slug)
     }
   }
   return (

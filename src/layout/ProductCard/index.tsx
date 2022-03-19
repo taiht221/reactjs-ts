@@ -8,6 +8,7 @@ import { Box } from '@mui/system'
 import { Link } from 'react-router-dom'
 import { THUMBNAIL_PLACEHOLDER } from '../../constant'
 import './style.css'
+import { useNavigate } from 'react-router-dom'
 type ProductCardProps = {
   product: {
     discount_rate: number
@@ -20,6 +21,7 @@ type ProductCardProps = {
   }
 }
 export function ProductCard({ product }: ProductCardProps) {
+  const navigate = useNavigate()
   return (
     <Card>
       {product.discount_rate > 0 ? (
@@ -78,7 +80,10 @@ export function ProductCard({ product }: ProductCardProps) {
             {product.price_usd} $
           </Box>
           <Button>
-            <AddBoxOutlinedIcon color="primary"></AddBoxOutlinedIcon>
+            <AddBoxOutlinedIcon
+              color="primary"
+              onClick={() => navigate(`/${product.slug}`)}
+            ></AddBoxOutlinedIcon>
           </Button>
         </Stack>
       </CardContent>

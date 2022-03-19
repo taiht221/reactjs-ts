@@ -1,5 +1,4 @@
 import { Chip, List, ListItem, Stack, Typography } from '@mui/material'
-import { Box } from '@mui/system'
 import { useMemo } from 'react'
 
 export interface FilterViewerProps {

@@ -1,4 +1,6 @@
 import { Close } from '@mui/icons-material'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
 import {
   Box,
   Button,
@@ -17,13 +19,11 @@ import {
   Typography,
 } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { RootState } from '../../app/store'
+import Breadcrumbs from '../../layout/Breadcrumbs'
 import { removeFromCart, setQuantity } from './cartSlice'
 import { cartItemsCountSelector, cartTotalSelector } from './selector'
-import Breadcrumbs from '../../layout/Breadcrumbs'
-import { useNavigate } from 'react-router-dom'
-import RemoveIcon from '@mui/icons-material/Remove'
-import AddIcon from '@mui/icons-material/Add'
 export default function Cart() {
   const navigate = useNavigate()
   const cartItemsCount = useSelector(cartItemsCountSelector)

@@ -9,10 +9,9 @@ import {
   TableRow,
   Typography,
 } from '@mui/material'
-import React, { useState } from 'react'
 import DOMPurify from 'dompurify'
+import React, { useState } from 'react'
 import './style.css'
-import Loading from '../../../layout/Loading'
 
 export interface ProductDescriptionProps {
   data: any

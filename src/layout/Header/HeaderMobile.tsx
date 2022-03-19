@@ -1,3 +1,4 @@
+import { Close } from '@mui/icons-material'
 import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined'
 import HomeIcon from '@mui/icons-material/Home'
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
@@ -7,7 +8,6 @@ import {
   Button,
   Container,
   Dialog,
-  DialogActions,
   DialogContent,
   IconButton,
   ListItem,
@@ -16,14 +16,13 @@ import {
   Stack,
 } from '@mui/material'
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { RootState } from '../../app/store'
+import Login from '../../pages/Auth/Login'
 import Register from '../../pages/Auth/Register'
 import './index.css'
 import { ROUTE_LIST } from './router'
-import { RootState } from '../../app/store'
-import { useDispatch, useSelector } from 'react-redux'
-import { Close } from '@mui/icons-material'
-import Login from '../../pages/Auth/Login'
 
 const MODE = {
   LOGIN: 'login',

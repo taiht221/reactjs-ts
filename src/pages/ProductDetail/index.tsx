@@ -7,11 +7,11 @@ import Breadcrumbs from '../../layout/Breadcrumbs'
 import Loading from '../../layout/Loading'
 import { ListReponse } from '../../models/common'
 import { truncateText } from '../../utils'
+import { addToCart, showMiniCart } from '../Cart/cartSlice'
 import NotFound from '../NotFound'
 import ProductDescription from './components/ProductDescription'
 import ProductInformation from './components/ProductInformation'
 import RelatedProducts from './components/RelatedProducts'
-import { addToCart, showMiniCart } from '../Cart/cartSlice'
 export default function ProductDetail() {
   let { slug } = useParams()
   //   const router = useRoutes()

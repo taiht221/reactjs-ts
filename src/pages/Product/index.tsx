@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { useMatch, useLocation } from 'react-router-dom'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import ProductDetail from '../ProductDetail'
 import ListPage from './pages/ListPage'
 

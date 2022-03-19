@@ -1,13 +1,9 @@
+import { Divider } from '@mui/material'
 import React from 'react'
-import PropTypes from 'prop-types'
 import FilterByCategory from './Filters/FilterByCategory'
 import FilterByPrice from './Filters/FilterByPrice'
-import { Divider } from '@mui/material'
 import FilterByRating from './Filters/FilterByRating'
 import FilterByStatus from './Filters/FilterBySatus'
-// import FilterByPrice from './Filters/FilterByPrice'
-// import FilterByService from './Filters/FilterByService'
-// import FilterByRating from './Filters/FilterByRating'
 
 interface ProductFiltersprops {
   filters: any

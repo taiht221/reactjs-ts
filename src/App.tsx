@@ -7,8 +7,8 @@ import Account from './pages/Account'
 import Cart from './pages/Cart'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
-import ProductDetail from './pages/ProductDetail'
 import Product from './pages/Product'
+import ProductDetail from './pages/ProductDetail'
 export default function App() {
   return (
     <Box>
@@ -17,7 +17,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/*" element={<Product />} />
-        <Route path="/profile" element={<Account />} />
+        <Route path="/profile/*" element={<Account />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/:slug" element={<ProductDetail />} />
         <Route path="*" element={<NotFound />} />

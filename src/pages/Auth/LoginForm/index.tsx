@@ -1,9 +1,9 @@
-import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { Button, DialogTitle, Typography } from '@mui/material'
+import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
-import { Button, DialogTitle, LinearProgress, Typography } from '@mui/material'
-import PasswordField from '../../../components/FormControls/PasswordField'
 import InputField from '../../../components/FormControls/InputField'
+import PasswordField from '../../../components/FormControls/PasswordField'
 
 interface LoginFormInputs {
   identifier: string

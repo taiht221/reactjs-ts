@@ -1,6 +1,4 @@
-import { RegisterFormInputs, RegisterReponse } from '../../models/common'
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import userApi from '../../api/userApi'
+import { createSlice } from '@reduxjs/toolkit'
 // props:payload and thunkApi for dispatch annother action
 export interface CartState {
   showMiniCart: boolean
