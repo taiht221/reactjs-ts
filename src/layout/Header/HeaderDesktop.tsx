@@ -1,9 +1,9 @@
 import { Close } from '@mui/icons-material'
-import { useNavigate } from 'react-router-dom'
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import SearchIcon from '@mui/icons-material/Search'
 import {
+  Alert,
   Badge,
   Box,
   Button,
@@ -12,6 +12,7 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Snackbar,
   Stack,
   Typography,
 } from '@mui/material'
@@ -19,13 +20,15 @@ import AppBar from '@mui/material/AppBar'
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import Toolbar from '@mui/material/Toolbar'
+import { useSnackbar } from 'notistack'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { AppDispatch, RootState } from '../../app/store'
+import { Link, useNavigate } from 'react-router-dom'
+import { RootState } from '../../app/store'
 import Login from '../../pages/Auth/Login'
 import Register from '../../pages/Auth/Register'
 import { logout } from '../../pages/Auth/userSlice'
+import { hideMiniCart } from '../../pages/Cart/cartSlice'
 import { cartItemsCountSelector } from '../../pages/Cart/selector'
 import { Search, SearchIconWrapper, StyledInputBase } from './common'
 import './index.css'
@@ -61,8 +64,25 @@ export function HeaderDeskTop() {
   const handleLogoutCLick = () => {
     dispatch(logout())
   }
+  const miniCartSelector = useSelector((state: RootState) => state.cart.showMiniCart)
+  const handleCloseSnackBar = () => {
+    dispatch(hideMiniCart())
+  }
+  // if (miniCartSelector) {
+  //   enqueueSnackbar('Thêm vào giỏ hàng thành công', { variant: 'error' })
+  // }
   return (
     <Box sx={{ flexGrow: 1 }} component="header">
+      <Snackbar
+        open={miniCartSelector}
+        autoHideDuration={8000}
+        onClose={handleCloseSnackBar}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      >
+        <Alert onClose={handleCloseSnackBar} severity="success">
+          Thêm vào giỏ hàng thành công
+        </Alert>
+      </Snackbar>
       <AppBar
         position="static"
         sx={{

@@ -9,6 +9,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  IconButton,
   ListItem,
   ListItemIcon,
   Paper,
@@ -19,7 +20,17 @@ import { NavLink } from 'react-router-dom'
 import Register from '../../pages/Auth/Register'
 import './index.css'
 import { ROUTE_LIST } from './router'
+import { RootState } from '../../app/store'
+import { useDispatch, useSelector } from 'react-redux'
+import { Close } from '@mui/icons-material'
+import Login from '../../pages/Auth/Login'
+
+const MODE = {
+  LOGIN: 'login',
+  REGISTER: 'register',
+}
 export function HeaderMobile() {
+  const [mode, setMode] = useState(MODE.LOGIN)
   const [open, setOpen] = useState(false)
   const handleClickOpen = () => {
     setOpen(true)
@@ -33,6 +44,8 @@ export function HeaderMobile() {
     <LocalMallOutlinedIcon key="third" />,
     <PersonOutlineIcon key="four" onClick={handleClickOpen} />,
   ]
+  const loggedInUser = useSelector((state: RootState) => state.user.current)
+  const isLoggedIn = !!loggedInUser.id
   return (
     <Box
       display={{ xs: 'block', md: 'none' }}
@@ -59,10 +72,37 @@ export function HeaderMobile() {
                   textAlign: 'center',
                 }}
               >
-                <ListItemIcon sx={{ minWidth: 'unset' }}>{iconList[index]}</ListItemIcon>
-                <NavLink key={route.path} to={route?.path} className="header-link">
-                  {route.label}
-                </NavLink>
+                {route.label === 'Account' ? (
+                  <>
+                    {isLoggedIn ? (
+                      <>
+                        <ListItemIcon sx={{ minWidth: 'unset' }}>{iconList[index]}</ListItemIcon>
+                        <Button
+                          className="header-link"
+                          onClick={() => setOpen(true)}
+                          size="small"
+                          color="secondary"
+                        >
+                          {route.label}
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <ListItemIcon sx={{ minWidth: 'unset' }}>{iconList[index]}</ListItemIcon>
+                        <NavLink key={route.path} to={route?.path} className="header-link">
+                          {route.label}
+                        </NavLink>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <ListItemIcon sx={{ minWidth: 'unset' }}>{iconList[index]}</ListItemIcon>
+                    <NavLink key={route.path} to={route?.path} className="header-link">
+                      {route.label}
+                    </NavLink>
+                  </>
+                )}
               </ListItem>
             ))}
           </Stack>
@@ -79,16 +119,39 @@ export function HeaderMobile() {
             return
           }
         }}
+        sx={{ '.MuiPaper-root': { minWidth: '30%' } }}
       >
         <DialogContent>
-          <Register closeDialog={handleClose} />
+          {mode === MODE.LOGIN && (
+            <>
+              <Login closeDialog={handleClose} />
+              <Box component="p" sx={{ margin: '0', textAlign: 'center' }}>
+                Don’t have account?
+                <Button color="primary" onClick={() => setMode(MODE.REGISTER)}>
+                  Register
+                </Button>
+              </Box>
+            </>
+          )}
+          {mode === MODE.REGISTER && (
+            <>
+              <Register closeDialog={handleClose} />
+              <Box component="p" sx={{ margin: '0', textAlign: 'center' }}>
+                Already have account?
+                <Button color="primary" onClick={() => setMode(MODE.LOGIN)}>
+                  Log In
+                </Button>
+              </Box>
+            </>
+          )}
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
+        <IconButton
+          sx={{ position: 'absolute', top: '0.5rem', right: '0.5rem', color: '#0f3460' }}
+          size="large"
+          onClick={handleClose}
+        >
+          <Close />
+        </IconButton>
       </Dialog>
     </Box>
   )

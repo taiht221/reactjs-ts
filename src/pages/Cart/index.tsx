@@ -13,15 +13,17 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
   Typography,
 } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../app/store'
-import { removeFromCart } from './cartSlice'
+import { removeFromCart, setQuantity } from './cartSlice'
 import { cartItemsCountSelector, cartTotalSelector } from './selector'
 import Breadcrumbs from '../../layout/Breadcrumbs'
 import { useNavigate } from 'react-router-dom'
-
+import RemoveIcon from '@mui/icons-material/Remove'
+import AddIcon from '@mui/icons-material/Add'
 export default function Cart() {
   const navigate = useNavigate()
   const cartItemsCount = useSelector(cartItemsCountSelector)
@@ -90,8 +92,9 @@ export default function Cart() {
                     <TableCell>Product</TableCell>
                     <TableCell align="right">Price</TableCell>
                     <TableCell align="right">Quantity</TableCell>
+                    <TableCell align="right"></TableCell>
                     <TableCell align="right">Subtotal</TableCell>
-                    <TableCell align="right">Subtotal</TableCell>
+                    <TableCell align="right"></TableCell>
                   </TableRow>
                 </TableHead>
                 {cartItemsSelector.map((cartItem: any) => (
@@ -106,12 +109,55 @@ export default function Cart() {
                           '>img': { width: '100%', height: '100%', objectFit: 'containt' },
                         }}
                       >
-                        <img src={cartItem.payload.thumbnail_url} alt="" />
+                        <img src={cartItem.payload.thumbnail_url} alt={cartItem.payload.name} />
                       </TableCell>
                       <TableCell align="right">{cartItem.payload.price_usd}$</TableCell>
                       <TableCell align="right">{cartItem.quantity}</TableCell>
                       <TableCell align="right">
-                        {cartItem.payload.price_usd * cartItem.quantity}$
+                        <Stack direction="row" sx={{ display: 'flex', alignItem: 'center' }}>
+                          <Button
+                            variant="outlined"
+                            aria-label="reduce"
+                            size="small"
+                            onClick={() => {
+                              dispatch(
+                                setQuantity({
+                                  quantity: cartItem.quantity - 1,
+                                  id: cartItem.id,
+                                })
+                              )
+                            }}
+                          >
+                            <RemoveIcon fontSize="small" />
+                          </Button>
+                          <TextField
+                            name="max"
+                            value={cartItem.quantity}
+                            // onChange={handleChange}
+                            variant="outlined"
+                            size="small"
+                            color="secondary"
+                            sx={{ height: '100%', width: '30%' }}
+                          />
+                          <Button
+                            size="small"
+                            variant="outlined"
+                            aria-label="increase"
+                            onClick={() => {
+                              dispatch(
+                                setQuantity({
+                                  quantity: cartItem.quantity + 1,
+                                  id: cartItem.id,
+                                })
+                              )
+                            }}
+                          >
+                            <AddIcon fontSize="small" />
+                          </Button>
+                        </Stack>
+                      </TableCell>
+                      <TableCell align="right">
+                        {Math.round(cartItem.payload.price_usd * cartItem.quantity * 100) / 100}$
                       </TableCell>
                       <TableCell align="right">
                         <IconButton
@@ -143,7 +189,8 @@ export default function Cart() {
                     <TableCell
                       sx={{ display: 'flex', alignItem: 'center', justifyContent: 'space-between' }}
                     >
-                      <Typography variant="body2">Subtotal</Typography> {cartTotal}$
+                      <Typography variant="body2">Subtotal</Typography>{' '}
+                      {Math.round(cartTotal * 100) / 100}$
                     </TableCell>
                   </TableRow>
                   <TableRow>
@@ -151,7 +198,7 @@ export default function Cart() {
                       sx={{ display: 'flex', alignItem: 'center', justifyContent: 'space-between' }}
                     >
                       <Typography variant="body2">Total</Typography>
-                      {cartTotal}$
+                      {Math.round(cartTotal * 100) / 100}$
                     </TableCell>
                   </TableRow>
                 </TableBody>

@@ -11,7 +11,7 @@ import NotFound from '../NotFound'
 import ProductDescription from './components/ProductDescription'
 import ProductInformation from './components/ProductInformation'
 import RelatedProducts from './components/RelatedProducts'
-import { addToCart } from '../Cart/cartSlice'
+import { addToCart, showMiniCart } from '../Cart/cartSlice'
 export default function ProductDetail() {
   let { slug } = useParams()
   //   const router = useRoutes()
@@ -44,6 +44,7 @@ export default function ProductDetail() {
         quantity,
       })
     )
+    dispatch(showMiniCart())
   }
 
   return (

@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import userApi from '../../api/userApi'
 // props:payload and thunkApi for dispatch annother action
 export interface CartState {
-  showMiniCart: Boolean
+  showMiniCart: boolean
   cartItems: any
 }
 
