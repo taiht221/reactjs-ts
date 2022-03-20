@@ -25,6 +25,7 @@ export interface AccountProps {}
 
 export default function Account(props: AccountProps) {
   const loggedInUser = useSelector((state: RootState) => state.user.current)
+  console.log(loggedInUser)
   const isLoggedIn = !!loggedInUser.id
   const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
@@ -207,7 +208,7 @@ export default function Account(props: AccountProps) {
           </Grid>
           <Grid item md={9} xs={12}>
             <Routes>
-              <Route path="/" element={<ProfileInfo />} />
+              <Route path="/" element={<ProfileInfo info={loggedInUser} />} />
               <Route path="/wishlist" element={<WishList />} />
               <Route path="/addresses" element={<Address />} />
               <Route path="/orders" element={<Orders />} />
