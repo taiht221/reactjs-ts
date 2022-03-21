@@ -24,10 +24,14 @@ export default function ProductDetail() {
   useEffect(() => {
     try {
       fetchProductsDetail()
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
     } catch (error) {
       console.log(error)
     }
-  }, [slug])
+  }, [])
 
   if (!productDetail) {
     return <Loading />
