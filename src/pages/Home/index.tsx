@@ -9,14 +9,14 @@ import { Carousel } from './Carousel'
 import { TopCategories } from './TopCategories'
 
 type HomeProps<T> = {
-  hot: T[]
-  discount: T[]
+  hot?: T[]
+  discount?: T[]
 }
 
 export default function Home() {
   const { enqueueSnackbar } = useSnackbar()
 
-  const [homeProduct, sethomeProduct] = useState<HomeProps<any>>()
+  const [homeProduct, sethomeProduct] = useState<HomeProps<any>>({})
   const [loading, setLoading] = useState<Boolean>(true)
 
   const fetchProducts = async () => {

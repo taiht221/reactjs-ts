@@ -25,7 +25,7 @@ export interface HomeProductReponse<T> {
 }
 
 export interface RegisterReponse {
-  jwt: 'string'
+  jwt: string
   user: any
 }
 
@@ -39,11 +39,6 @@ export interface RegisterFormInputs {
 export interface LoginFormInputs {
   email: string
   password: string
-}
-export interface userState {
-  loading: boolean
-  current: any
-  setting: any
 }
 export interface Query {
   page?: any

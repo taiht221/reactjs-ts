@@ -1,10 +1,15 @@
-import { userState } from './../../models/common'
 import { LoginFormInputs, RegisterFormInputs, RegisterReponse } from '../../models/common'
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import userApi from '../../api/userApi'
 import { StorageKeys } from '../../constant'
-// props:payload and thunkApi for dispatch annother action
 
+export interface UserState {
+  loading: boolean
+  current: any
+  setting: any
+}
+
+// props:payload and thunkApi for dispatch annother action
 export const register = createAsyncThunk('user/register', async (payload: RegisterFormInputs) => {
   const data = await userApi.register(payload)
   localStorage.setItem(StorageKeys.TOKEN, data.jwt)
@@ -23,7 +28,7 @@ export const login = createAsyncThunk('user/login', async (payload: LoginFormInp
 const userJson = localStorage.getItem(StorageKeys.USER)
 const userSlice = createSlice({
   name: 'user',
-  initialState: <userState>{
+  initialState: <UserState>{
     loading: false,
     current: userJson !== null ? JSON.parse(userJson) : {},
     setting: {},
@@ -35,22 +40,33 @@ const userSlice = createSlice({
       state.current = {}
     },
   },
-  extraReducers: {
-    [register.pending.toString()]: (state: any, action: any) => {
+  extraReducers: (builder) => {
+    builder.addCase(register.pending, (state, action) => {
       state.current = action.payload
       state.loading = true
-    },
-    [register.fulfilled.toString()]: (state: any, action: any) => {
+    })
+    builder.addCase(register.fulfilled, (state, action) => {
       state.current = action.payload
       state.loading = false
-    },
-    [register.rejected.toString()]: (state: any, action: any) => {
+    })
+    builder.addCase(register.rejected, (state) => {
       state.loading = false
-    },
-    [login.fulfilled.toString()]: (state: any, action: any) => {
+    })
+    builder.addCase(login.fulfilled, (state, action) => {
       state.current = action.payload
       state.loading = false
-    },
+    })
+    // [register.fulfilled.toString()]: (state, action: PayloadAction) => {
+    //   state.current = action.payload
+    //   state.loading = false
+    // },
+    // [register.rejected.toString()]: (state, action: PayloadAction) => {
+    //   state.loading = false
+    // },
+    // [login.fulfilled.toString()]: (state, action: PayloadAction) => {
+    //   state.current = action.payload
+    //   state.loading = false
+    // },
   },
 })
 const { actions, reducer } = userSlice

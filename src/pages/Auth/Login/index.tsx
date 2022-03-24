@@ -1,7 +1,6 @@
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../../../app/store'
+import { useAppDispatch } from '../../../app/hook'
 import { LoginFormInputs } from '../../../models/common'
 import LoginForm from '../LoginForm'
 import { login } from '../userSlice'
@@ -12,7 +11,7 @@ export interface LoginProps {
 
 function Login({ closeDialog }: LoginProps) {
   const { enqueueSnackbar } = useSnackbar()
-  const dispatch: AppDispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const handleSubmit = async (values: LoginFormInputs) => {
     try {
       const actions = login(values)

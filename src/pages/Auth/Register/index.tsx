@@ -1,8 +1,7 @@
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
 import * as React from 'react'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../../../app/store'
+import { useAppDispatch } from '../../../app/hook'
 import { RegisterFormInputs } from '../../../models/common'
 import RegisterForm from '../RegisterForm'
 import { register } from '../userSlice'
@@ -12,9 +11,8 @@ export interface RegisterProps {
 }
 
 export default function Register({ closeDialog }: RegisterProps) {
-  // const dispatch = useDispatch()
   const { enqueueSnackbar } = useSnackbar()
-  const dispatch: AppDispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const handleSubmit = async (values: RegisterFormInputs) => {
     try {

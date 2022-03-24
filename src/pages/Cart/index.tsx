@@ -18,8 +18,9 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../../app/hook'
 import { RootState } from '../../app/store'
 import Breadcrumbs from '../../layout/Breadcrumbs'
 import { removeFromCart, setQuantity } from './cartSlice'
@@ -29,7 +30,7 @@ export default function Cart() {
   const cartItemsCount = useSelector(cartItemsCountSelector)
   const cartTotal = useSelector(cartTotalSelector)
   const cartItemsSelector = useSelector((state: RootState) => state.cart.cartItems)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const handleAddToCart = (values: any) => {
     console.log(values)
   }

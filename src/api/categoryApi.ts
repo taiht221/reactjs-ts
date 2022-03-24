@@ -1,7 +1,8 @@
+import category from '../models/caterogy'
 import axiosClient from './axiosClient'
 
 const categoryApi = {
-  getAll(): Promise<Array<any>> {
+  getAll(): Promise<Array<category>> {
     const url = '/categories'
     return axiosClient.get(url)
   },

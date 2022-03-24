@@ -22,11 +22,12 @@ import {
   Snackbar,
   Stack,
   Toolbar,
-  Typography,
+  Typography
 } from '@mui/material'
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../../app/hook'
 import { RootState } from '../../app/store'
 import Login from '../../pages/Auth/Login'
 import Register from '../../pages/Auth/Register'
@@ -49,7 +50,7 @@ export function HeaderDeskTop() {
   const [anchorEl, setAnchorEl] = useState(null)
   const cartItemsCount = useSelector(cartItemsCountSelector)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const handleClickOpen = () => {
     setOpen(true)
   }

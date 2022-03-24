@@ -1,8 +1,8 @@
 import { Box, Container } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import detailsApi from '../../api/detailsApi'
+import { useAppDispatch } from '../../app/hook'
 import Breadcrumbs from '../../layout/Breadcrumbs'
 import Loading from '../../layout/Loading'
 import { ListReponse } from '../../models/common'
@@ -20,7 +20,7 @@ export default function ProductDetail() {
     const { data }: ListReponse<any> = await detailsApi.getAll(slug)
     setProductDetail(data)
   }
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   useEffect(() => {
     try {
       fetchProductsDetail()
