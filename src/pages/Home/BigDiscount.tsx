@@ -11,14 +11,15 @@ import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { ProductCard } from '../../layout/ProductCard'
 import { ProductCardLoading } from '../../layout/ProductCardLoading'
+import { Detail, HomeProps } from '../../models'
 import './index.css'
 
 export interface BigDiscountProps {
-  data?: Array<any>
+  data: Array<Detail>
   loading: Boolean
 }
 
-export function BigDiscount({ data = [], loading }: BigDiscountProps) {
+export function BigDiscount({ data, loading }: BigDiscountProps) {
   return (
     <Box component="section" bgcolor="#f6f9fc" pb={4} pt={2}>
       <Container>
@@ -80,11 +81,7 @@ export function BigDiscount({ data = [], loading }: BigDiscountProps) {
         >
           {data.map((product, index) => (
             <SwiperSlide key={index}>
-              {loading ? (
-                <ProductCardLoading length={product.length} />
-              ) : (
-                <ProductCard product={product} />
-              )}
+              {loading ? <ProductCardLoading length={data.length} /> : <ProductCard {...product} />}
             </SwiperSlide>
           ))}
         </Swiper>

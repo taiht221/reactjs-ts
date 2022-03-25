@@ -3,27 +3,20 @@ import { useSnackbar } from 'notistack'
 import { useEffect, useState } from 'react'
 import homeProductApi from '../../api/homeProductApi'
 import Loading from '../../layout/Loading'
+import { Detail, HomeProps } from '../../models'
 import { Benefit } from './Benefit'
 import { BigDiscount } from './BigDiscount'
 import { Carousel } from './Carousel'
 import { TopCategories } from './TopCategories'
 
-type HomeProps<T> = {
-  hot?: T[]
-  discount?: T[]
-}
-
 export default function Home() {
   const { enqueueSnackbar } = useSnackbar()
 
-  const [homeProduct, sethomeProduct] = useState<HomeProps<any>>({})
+  const [homeProduct, sethomeProduct] = useState<HomeProps<Detail>>()
   const [loading, setLoading] = useState<Boolean>(true)
 
   const fetchProducts = async () => {
-    const productList: {
-      hot: any[]
-      discount: any[]
-    } = await homeProductApi.getAll()
+    const productList = await homeProductApi.getAll()
     sethomeProduct(productList)
   }
 
@@ -43,8 +36,8 @@ export default function Home() {
   return (
     <Box>
       <Carousel />
-      <TopCategories data={homeProduct?.hot} loading={loading} />
-      <BigDiscount data={homeProduct?.discount} loading={loading} />
+      <TopCategories data={homeProduct.hot} loading={loading} />
+      <BigDiscount data={homeProduct.discount} loading={loading} />
       <Benefit />
     </Box>
   )

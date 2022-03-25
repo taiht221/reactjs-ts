@@ -11,10 +11,11 @@ import 'swiper/css/navigation'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { ProductCard } from '../../layout/ProductCard'
 import { ProductCardLoading } from '../../layout/ProductCardLoading'
+import { Detail } from '../../models'
 import './index.css'
 
 export interface TopCategoriesProps {
-  data?: Array<any>
+  data: Array<Detail>
   loading: Boolean
 }
 
@@ -79,11 +80,7 @@ export function TopCategories({ data = [], loading }: TopCategoriesProps) {
         >
           {data.map((product, index) => (
             <SwiperSlide key={index}>
-              {loading ? (
-                <ProductCardLoading length={product.length} />
-              ) : (
-                <ProductCard product={product} />
-              )}
+              {loading ? <ProductCardLoading length={data.length} /> : <ProductCard {...product} />}
             </SwiperSlide>
           ))}
         </Swiper>
