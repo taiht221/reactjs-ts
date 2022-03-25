@@ -5,9 +5,10 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Detail } from '../../../models'
 import './style.css'
 export interface IRelatedProductsProps {
-  data: any
+  data: Detail
 }
 
 export default function RelatedProducts({ data }: IRelatedProductsProps) {

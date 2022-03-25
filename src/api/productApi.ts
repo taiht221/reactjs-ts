@@ -1,8 +1,9 @@
+import { Detail } from '../models'
 import { ListReponse } from './../models/common'
 import axiosClient from './axiosClient'
 
 const productApi = {
-  getAll(params?: any): Promise<ListReponse<any>> {
+  getAll(params?: any): Promise<ListReponse<Detail>> {
     const url = '/product'
     return axiosClient.get(url, { params })
   },

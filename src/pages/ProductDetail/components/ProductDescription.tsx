@@ -11,10 +11,11 @@ import {
 } from '@mui/material'
 import DOMPurify from 'dompurify'
 import React, { useState } from 'react'
+import { Detail } from '../../../models'
 import './style.css'
 
 export interface ProductDescriptionProps {
-  data: any
+  data: Detail
 }
 
 function ProductDescription({ data }: ProductDescriptionProps) {

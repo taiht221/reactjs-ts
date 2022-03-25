@@ -5,6 +5,7 @@ import detailsApi from '../../api/detailsApi'
 import { useAppDispatch } from '../../app/hook'
 import Breadcrumbs from '../../layout/Breadcrumbs'
 import Loading from '../../layout/Loading'
+import { Detail } from '../../models'
 import { ListReponse } from '../../models/common'
 import { truncateText } from '../../utils'
 import { addToCart, showMiniCart } from '../Cart/cartSlice'
@@ -15,10 +16,10 @@ import RelatedProducts from './components/RelatedProducts'
 export default function ProductDetail() {
   let { slug } = useParams()
   //   const router = useRoutes()
-  const [productDetail, setProductDetail] = useState<Array<any>>([])
+  const [productDetail, setProductDetail] = useState<Detail>()
   const fetchProductsDetail = async () => {
     const { data } = await detailsApi.getAll(slug)
-    setProductDetail(data)
+    setProductDetail(data[0])
   }
   const dispatch = useAppDispatch()
   useEffect(() => {
@@ -36,15 +37,15 @@ export default function ProductDetail() {
   if (!productDetail) {
     return <Loading />
   }
-  if (productDetail[0] === undefined) {
+  if (productDetail === undefined) {
     return <NotFound />
   }
-  document.title = productDetail[0]?.name
+  document.title = productDetail.name
   const handleCartSubmit = ({ quantity }: any) => {
     dispatch(
       addToCart({
-        id: productDetail[0].id,
-        payload: productDetail[0],
+        id: productDetail.id,
+        payload: productDetail,
         quantity,
       })
     )
@@ -62,12 +63,12 @@ export default function ProductDetail() {
         <Breadcrumbs
           links={[
             { title: 'Home', link: '/' },
-            { title: truncateText(productDetail[0]?.name, 50).toLowerCase() },
+            { title: truncateText(productDetail.name, 50).toLowerCase() },
           ]}
         />
-        <ProductInformation data={productDetail[0]} onSubmit={handleCartSubmit} />
-        <ProductDescription data={productDetail[0]} />
-        <RelatedProducts data={productDetail[0]} />
+        <ProductInformation data={productDetail} onSubmit={handleCartSubmit} />
+        <ProductDescription data={productDetail} />
+        <RelatedProducts data={productDetail} />
       </Container>
     </Box>
   )

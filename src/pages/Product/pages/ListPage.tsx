@@ -15,7 +15,7 @@ export default function ListPage() {
   const [productList, setProductList] = useState<Array<any>>([])
   const [loading, setLoading] = useState<Boolean>(true)
   const [pagination, setPagination] = useState<PaginationParams>()
-  const [categoryName, setCategoryName] = useState<any>('All Product')
+  const [categoryName, setCategoryName] = useState<string>('All Product')
   const navigate = useNavigate()
   const location = useLocation()
 

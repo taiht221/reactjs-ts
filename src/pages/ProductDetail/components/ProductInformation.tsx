@@ -2,10 +2,11 @@ import { Box, Rating, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { Detail } from '../../../models'
 import AddToCartForm from '../../Auth/AddToCartForm'
 
 export interface IProductInformationProps {
-  data: any
+  data: Detail
   onSubmit: (values: any) => void
 }
 export default function ProductInformation({ data, onSubmit }: IProductInformationProps) {

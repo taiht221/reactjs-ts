@@ -9,18 +9,9 @@ import { Link } from 'react-router-dom'
 import { THUMBNAIL_PLACEHOLDER } from '../../constant'
 import './style.css'
 import { useNavigate } from 'react-router-dom'
-type ProductCardProps = {
-  product: {
-    discount_rate: number
-    name: string
-    categories: number
-    price_usd: number
-    images: any
-    slug: string
-    rating_average: any
-  }
-}
-export function ProductCard({ product }: ProductCardProps) {
+import { Detail } from '../../models'
+
+export function ProductCard(product: Detail) {
   const navigate = useNavigate()
   return (
     <Card>
