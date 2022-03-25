@@ -15,9 +15,9 @@ import RelatedProducts from './components/RelatedProducts'
 export default function ProductDetail() {
   let { slug } = useParams()
   //   const router = useRoutes()
-  const [productDetail, setProductDetail] = useState<Array<any>>()
+  const [productDetail, setProductDetail] = useState<Array<any>>([])
   const fetchProductsDetail = async () => {
-    const { data }: ListReponse<any> = await detailsApi.getAll(slug)
+    const { data } = await detailsApi.getAll(slug)
     setProductDetail(data)
   }
   const dispatch = useAppDispatch()

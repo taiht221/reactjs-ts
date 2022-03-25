@@ -15,7 +15,7 @@
     "@mui/icons-material": "^5.4.4",
     "@mui/material": "^5.4.4",
     "@reduxjs/toolkit": "^1.8.0",
-    "axios": "^0.26.0",
+    "axios": "^0.26.1",
     "clsx": "^1.1.1",
     "dompurify": "^2.3.6",
     "notistack": "^2.0.3",
