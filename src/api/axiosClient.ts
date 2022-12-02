@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosClient = axios.create({
-  baseURL: 'http://course.spacedev.vn/',
+  baseURL: 'https://course.spacedev.vn/',
   headers: {
     'Content-Type': 'application/json',
   },
