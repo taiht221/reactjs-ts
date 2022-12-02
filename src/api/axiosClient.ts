@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosClient = axios.create({
-  baseURL: 'https://cfd-reactjs.herokuapp.com',
+  baseURL: 'http://course.spacedev.vn/',
   headers: {
     'Content-Type': 'application/json',
   },
