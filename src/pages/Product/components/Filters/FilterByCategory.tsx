@@ -9,7 +9,7 @@ interface FilterByCategoryprops {
 }
 
 function FilterByCategory({ onChange }: FilterByCategoryprops) {
-  const [categoryList, setCategoryList] = useState<Array<category>>([])
+  const [categoryList, setCategoryList] = useState<Array<any>>([])
   const [loading, setLoading] = useState<Boolean>(true)
   useEffect(() => {
     ;(async () => {
