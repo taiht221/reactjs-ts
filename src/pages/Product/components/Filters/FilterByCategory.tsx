@@ -2,14 +2,13 @@ import { List, ListItemButton, Skeleton, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 import categoryApi from '../../../../api/categoryApi'
-import category from '../../../../models/caterogy'
 
 interface FilterByCategoryprops {
   onChange: (value: any) => void
 }
 
 function FilterByCategory({ onChange }: FilterByCategoryprops) {
-  const [categoryList, setCategoryList] = useState<Array<any>>([])
+  const [categoryList, setCategoryList] = useState<any>([])
   const [loading, setLoading] = useState<Boolean>(true)
   useEffect(() => {
     ;(async () => {
