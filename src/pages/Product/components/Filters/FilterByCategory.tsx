@@ -13,7 +13,7 @@ function FilterByCategory({ onChange }: FilterByCategoryprops) {
   useEffect(() => {
     ;(async () => {
       try {
-        const {data} = await categoryApi.getAll()
+        const { data }: any = await categoryApi.getAll()
         setCategoryList(data)
         setLoading(false)
       } catch (error) {
@@ -37,7 +37,7 @@ function FilterByCategory({ onChange }: FilterByCategoryprops) {
         </Typography>
         <List>
           {loading && <CategoryLoading />}
-          {categoryList.map((category, i) => (
+          {categoryList.map((category: any, i: any) => (
             <ListItemButton
               key={category.id}
               sx={{ textTransform: 'capitalize', padding: '0.5rem 0' }}

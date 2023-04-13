@@ -1,8 +1,5 @@
 export default interface category {
-  data:{
-     id: number
+  id: number
   title: string
   slug: string
-  }
- 
 }
