@@ -3,7 +3,7 @@ import axiosClient from './axiosClient'
 
 const categoryApi = {
   getAll(): Promise<Array<category>> {
-    const url = '/categories'
+    const url = '/produtct/categories'
     return axiosClient.get(url)
   },
 }
