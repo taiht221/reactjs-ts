@@ -14,8 +14,8 @@ function FilterByCategory({ onChange }: FilterByCategoryprops) {
   useEffect(() => {
     ;(async () => {
       try {
-        const response = await categoryApi.getAll()
-        setCategoryList(response)
+        const {data} = await categoryApi.getAll()
+        setCategoryList(data)
         setLoading(false)
       } catch (error) {
         console.log(error)
