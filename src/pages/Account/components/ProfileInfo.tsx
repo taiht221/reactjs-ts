@@ -4,7 +4,7 @@ import * as React from 'react'
 export interface ProfileInfoProps {
   info: {
     email: string
-    fullName: string
+    username: string
     id: number
   }
 }
