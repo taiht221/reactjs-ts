@@ -37,7 +37,7 @@ export interface RegisterFormInputs {
   username?: string
 }
 export interface LoginFormInputs {
-  email: string
+  username: string
   password: string
 }
 export interface Query {
