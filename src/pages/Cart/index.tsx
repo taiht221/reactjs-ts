@@ -31,6 +31,7 @@ export default function Cart() {
   const cartTotal = useSelector(cartTotalSelector)
   const cartItemsSelector = useSelector((state: RootState) => state.cart.cartItems)
   const dispatch = useAppDispatch()
+  console.log(cartItemsSelector)
   const handleAddToCart = (values: any) => {
     console.log(values)
   }

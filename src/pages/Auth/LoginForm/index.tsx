@@ -6,7 +6,7 @@ import InputField from '../../../components/FormControls/InputField'
 import PasswordField from '../../../components/FormControls/PasswordField'
 
 interface LoginFormInputs {
-  identifier: string
+  username: string
   password: string
 }
 
@@ -16,7 +16,7 @@ export interface LoginFormProps {
 export default function LoginForm({ onSubmit }: LoginFormProps) {
   const schema = yup
     .object({
-      identifier: yup.string().required('email is required').email('invalid email').trim(),
+      username: yup.string().required('email is required').trim(),
       // email: yup.string().required('Nhập họ và tên của bạn.'),
       password: yup.string().required('password is required'),
     })
@@ -24,7 +24,7 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
 
   const form = useForm<LoginFormInputs>({
     defaultValues: {
-      identifier: '',
+      username: '',
       password: '',
     },
     resolver: yupResolver(schema),
@@ -45,16 +45,16 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
         Welcome To Ecommerce
       </DialogTitle>
       <Typography sx={{ textAlign: 'center', fontWeight: '400', fontSize: '0.8rem' }}>
-        Log in with email & password
+        Log in with username & password
       </Typography>
       <form onSubmit={form.handleSubmit(onSubmitForm)}>
         <InputField
-          name="identifier"
-          label="Email"
+          name="username"
+          label="Username"
           form={form}
           control={form.control}
-          autocomplete="email"
-          placeholder="example@mail.com"
+          autocomplete="username"
+          placeholder="admin"
         />
         <PasswordField
           name="password"

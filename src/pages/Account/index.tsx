@@ -25,8 +25,7 @@ export interface AccountProps {}
 
 export default function Account(props: AccountProps) {
   const loggedInUser = useSelector((state: RootState) => state.user.current)
-  console.log(loggedInUser)
-  const isLoggedIn = !!loggedInUser.id
+  const isLoggedIn = !!loggedInUser._id
   const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
   const { url } = useParams()

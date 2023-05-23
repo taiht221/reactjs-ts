@@ -58,7 +58,7 @@ export default function ProfileInfo({ info }: ProfileInfoProps) {
               >
                 <div>
                   <Typography variant="h6" component="h5">
-                    {info.fullName}
+                    {info.username}
                   </Typography>
                   <Stack
                     sx={{

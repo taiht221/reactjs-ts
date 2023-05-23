@@ -4,10 +4,10 @@ import axiosClient from './axiosClient'
 
 const userApi = {
   register(params: RegisterFormInputs): Promise<any> {
-    return axiosClient.post('https://api.ezfrontend.com/auth/local/register', params)
+    return axiosClient.post('https://merkle-sever.herokuapp.com/api/auth/register', params)
   },
   login(params: LoginFormInputs): Promise<any> {
-    return axiosClient.post('https://api.ezfrontend.com/auth/local', params)
+    return axiosClient.post('https://merkle-sever.herokuapp.com/api/auth/login', params)
   },
   change(data: any) {
     const url = '/elearning/v4/login'

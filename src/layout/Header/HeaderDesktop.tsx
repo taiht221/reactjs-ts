@@ -22,7 +22,7 @@ import {
   Snackbar,
   Stack,
   Toolbar,
-  Typography
+  Typography,
 } from '@mui/material'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -46,7 +46,7 @@ export function HeaderDeskTop() {
   const [mode, setMode] = useState(MODE.LOGIN)
   const [open, setOpen] = useState(false)
   const loggedInUser = useSelector((state: RootState) => state.user.current)
-  const isLoggedIn = !!loggedInUser.id
+  const isLoggedIn = !!loggedInUser._id
   const [anchorEl, setAnchorEl] = useState(null)
   const cartItemsCount = useSelector(cartItemsCountSelector)
   const navigate = useNavigate()
@@ -147,7 +147,7 @@ export function HeaderDeskTop() {
                   sx={{ minWidth: 'unset' }}
                   onClick={handleOpenMenu}
                 >
-                  <Typography sx={{ fontWeight: 'bold' }}>{loggedInUser.fullName}</Typography>
+                  <Typography sx={{ fontWeight: 'bold' }}>{loggedInUser.username}</Typography>
                 </Button>
               )}
 

@@ -12,25 +12,27 @@ export interface UserState {
 // props:payload and thunkApi for dispatch annother action
 export const register = createAsyncThunk('user/register', async (payload: RegisterFormInputs) => {
   const data = await userApi.register(payload)
-  localStorage.setItem(StorageKeys.TOKEN, data.jwt)
-  localStorage.setItem(StorageKeys.USER, JSON.stringify(data.user))
+  // console.log(data)
+  // localStorage.setItem(StorageKeys.TOKEN, data.jwt)
+  localStorage.setItem(StorageKeys.USER, JSON.stringify(data))
 
-  return data.user
+  return data
 })
 
 export const login = createAsyncThunk('user/login', async (payload: LoginFormInputs) => {
   const data = await userApi.login(payload)
-  localStorage.setItem(StorageKeys.TOKEN, data.jwt)
-  localStorage.setItem(StorageKeys.USER, JSON.stringify(data.user))
+  console.log(data)
+  localStorage.setItem(StorageKeys.TOKEN, data.accessToken)
+  localStorage.setItem(StorageKeys.USER, JSON.stringify(data))
 
-  return data.user
+  return data
 })
 const userJson = localStorage.getItem(StorageKeys.USER)
 const userSlice = createSlice({
   name: 'user',
   initialState: <UserState>{
     loading: false,
-    current: userJson !== null ? JSON.parse(userJson) : {},
+    current: userJson !== null || undefined ? JSON.parse(userJson) : {},
     setting: {},
   },
   reducers: {
