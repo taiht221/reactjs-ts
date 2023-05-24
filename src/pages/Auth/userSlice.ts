@@ -27,7 +27,7 @@ export const login = createAsyncThunk('user/login', async (payload: LoginFormInp
 
   return data
 })
-const userJson = localStorage.getItem(StorageKeys.USER)
+const userJson: any = localStorage.getItem(StorageKeys.USER)
 const userSlice = createSlice({
   name: 'user',
   initialState: <UserState>{
